@@ -7,8 +7,8 @@ export default function Header() {
         <div>
             <h1><Link href="/">Company Logo</Link></h1> 
             <ul>
-                <li><Link href="/login">Sign In</Link></li>
-                <li><Link href="/forgot-password">forgot Password?</Link></li>
+                <Link href="/login">Sign In</Link> | 
+                <Link href="/forgot-password">forgot Password?</Link>
             </ul>
         </div>
     )
