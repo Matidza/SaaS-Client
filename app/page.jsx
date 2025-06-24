@@ -1,11 +1,9 @@
-export default function Page() {
-	return (
-	    <div className="text-primary">
-			<h2>Welcome to the Register Page</h2>
+'use server'
+import React from 'react'
 
-			<p className="text-center text-2xl text-gray-600 mb-5">
-				Dont&rsquo;t have an account? <strong>Create one!</strong>
-			</p>
-	    </div>
-	)
-}
+export default function Page() {
+    return (
+        <form>
+            <input name="email" type="email" placeholder="email" ></input>
+            <input name="email" type="email" placeholder="email" ></input>
+            <button type="submi
