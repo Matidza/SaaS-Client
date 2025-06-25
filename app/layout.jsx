@@ -3,6 +3,8 @@ import Header from "../components/Hearder"
 import Footer from "../components/footer"
 import "./global.css"
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export const metadata = {
   title: 'Initia – Mock Interview Platform for Students',
   description: 'Initia is a career readiness platform that connects students with real-world professionals for mock interviews, helping them build confidence and prepare for job success.',
@@ -52,14 +54,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="d-flex flex-column min-vh-100">
+        <Header />
+        
+        <main className="flex-grow-1">
+          {children}
+        </main>
 
-        <header>
-          <h1>Initia</h1>
-        </header> 
-        <main>{children}</main>     
-        <footer><Footer /></footer>
-
+        <Footer />
       </body>
     </html>
   )

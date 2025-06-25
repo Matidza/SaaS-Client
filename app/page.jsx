@@ -1,7 +1,8 @@
 'use client'
-import Link from "next/link"
 import React, { useState } from 'react'
+import Link from "next/link"
 import { useRouter } from 'next/navigation'
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap'
 
 export default function Page() {
     const [email, setEmail] = useState('');
@@ -25,25 +26,21 @@ export default function Page() {
             });
 
             const result = await response.json();
+
             if (response.ok) {
-                console.log("Signed in successfully:", result);
                 setSuccessMessage("🎉 Account created successfully! Redirecting...");
-                //console.log("Signed in successfully:", result);
-                // Optional delay before redirecting
                 setTimeout(() => {
                     router.push('/signin');
                 }, 3000);
-            } else if (!response.ok) {
-                // Set error based on the field
+            } else {
                 if (result.field === 'email') {
                     setEmailError(result.message);
                 } else if (result.field === 'password') {
                     setPasswordError(result.message);
                 } else {
-                    alert(result.message); // fallback
+                    alert(result.message);
                 }
-            } 
-             
+            }
         } catch (err) {
             alert("Something went wrong. Please try again.");
             console.error("Signup Error:", err.message);
@@ -51,38 +48,52 @@ export default function Page() {
     };
 
     return (
-        <>
-            <h2>Welcome to the Signup Page</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input 
-                        name="email" 
-                        type="email" 
-                        placeholder="Email" 
-                        value={email} 
-                        onChange={e => setEmail(e.target.value)} 
-                    />
-                    {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
-                </div>
+        <Container className="mt-5 p-9">
+            <Row className="justify-content-center">
+                <Col md={6}>
+                    <h2 className="text-center mb-4">Signup</h2>
 
-                <div>
-                    <input 
-                        name="password" 
-                        type="password" 
-                        placeholder="Password" 
-                        value={password} 
-                        onChange={e => setPassword(e.target.value)} 
-                    />
-                    {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-                </div>
+                    {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
-                <button type="submit">Submit</button>
-                <Link href="/signin">Sign In</Link>
-            </form>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="formEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control 
+                                type="email" 
+                                placeholder="Enter email" 
+                                value={email}
+                                onChange={e => setEmail(e.target.value)} 
+                                isInvalid={!!emailError}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                {emailError}
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
-            {successMessage && (
-                <p style={{ color: 'green', marginTop: '10px' }}>{successMessage}</p>
-            )}
-        </>
+                        <Form.Group className="mb-3" controlId="formPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control 
+                                type="password" 
+                                placeholder="Password" 
+                                value={password}
+                                onChange={e => setPassword(e.target.value)} 
+                                isInvalid={!!passwordError}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                {passwordError}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Button variant="primary" type="submit" className="w-100">
+                            Submit
+                        </Button>
+
+                        <div className="text-center mt-3">
+                            <Link href="/signin">Already have an account? Sign In</Link>
+                        </div>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 }
