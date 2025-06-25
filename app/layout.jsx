@@ -1,7 +1,7 @@
 import "./global.css"
 import Header from "../components/Hearder"
 import Footer from "../components/footer"
-
+import "./global.css"
 
 export const metadata = {
   title: 'Initia – Mock Interview Platform for Students',
@@ -54,7 +54,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
 
-        <header><Header/></header>
+        <header>
+          <h1>Initia</h1>
+        </header> 
         <main>{children}</main>     
         <footer><Footer /></footer>
 
