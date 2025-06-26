@@ -17,8 +17,12 @@ export default function Page() {
         setEmailError(null);
         setPasswordError(null);
         setSuccessMessage(null);
+        setEmail("")
+        setPassword("")
+
 
         try {
+            
             const response = await fetch('http://localhost:8000/api/auth/signup', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -28,10 +32,11 @@ export default function Page() {
             const result = await response.json();
 
             if (response.ok) {
+                console.log(result)
                 setSuccessMessage("🎉 Account created successfully! Redirecting...");
                 setTimeout(() => {
                     router.push('/signin');
-                }, 3000);
+                }, 2000);
             } else {
                 if (result.field === 'email') {
                     setEmailError(result.message);
@@ -41,27 +46,30 @@ export default function Page() {
                     alert(result.message);
                 }
             }
-        } catch (err) {
+        } catch (error) {
             alert("Something went wrong. Please try again.");
-            console.error("Signup Error:", err.message);
+            console.error("Signup Error:", error.message);
         }
     };
+    
 
     return (
-        <Container className="mt-5 p-9">
+        <Container className="mt-4 border border-white-900 shadow-md">
             <Row className="justify-content-center">
-                <Col md={6}>
-                    <h2 className="text-center mb-4">Signup</h2>
-
+                <Col md={7}>
+                    <h4 className="text-center text-2xl text-gray-400 mb-4 mt-3">Don&rsquo;t have an account? <strong>Create One</strong></h4>
+                    
                     {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} className='max-w-xs mx-auto mb3'>
                         <Form.Group className="mb-3" controlId="formEmail">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label className='text-white-600'>email address</Form.Label>
                             <Form.Control 
                                 type="email" 
                                 placeholder="Enter email" 
                                 value={email}
+                                className="text-gray-500 border border-secondary"
+                                autoComplete='off'
                                 onChange={e => setEmail(e.target.value)} 
                                 isInvalid={!!emailError}
                             />
@@ -71,10 +79,12 @@ export default function Page() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formPassword">
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>password</Form.Label>
                             <Form.Control 
                                 type="password" 
-                                placeholder="Password" 
+                                className="text-gray-500 border border-secondary"
+                                placeholder="Password"
+                                autoComplete='off'
                                 value={password}
                                 onChange={e => setPassword(e.target.value)} 
                                 isInvalid={!!passwordError}
@@ -84,14 +94,17 @@ export default function Page() {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Button variant="primary" type="submit" className="w-100">
-                            Submit
+                        <Button variant="success" type="submit" className="btn  w-50">
+                            Create Account
                         </Button>
+                        
 
-                        <div className="text-center mt-3">
+                        <div className="text-center mt-3 mb-3">
                             <Link href="/signin">Already have an account? Sign In</Link>
                         </div>
                     </Form>
+                    
+
                 </Col>
             </Row>
         </Container>

@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
       <body className="d-flex flex-column min-vh-100">
         <Header />
         
-        <main className="flex-grow-1">
+        <main className="container mx-auto p-10">
           {children}
         </main>
 
