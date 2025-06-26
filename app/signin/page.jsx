@@ -18,7 +18,7 @@ const handleSubmit = async (e) => {
             localStorage.setItem('accessToken', result.accessToken)
 
             setSuccessMessage("🎉 Logged in successfully! Redirecting...")
-            setTimeout(() => router.push('/dashboard'), 2000)
+            //setTimeout(() => router.push('/dashboard'), 2000)
         } else {
             if (result.field === 'email') {
                 setEmailError(result.message)
