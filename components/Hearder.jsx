@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import SignOutButton from './SignOutButton'
+//import SignOutButton from '../app/signout/SignOutButton'
 import { useEffect, useState } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 
@@ -24,14 +24,14 @@ export default function Header() {
             {!isAuthenticated && (
               <>
                 <Nav.Link as={Link} href="/signin">Sign In</Nav.Link>
-                <Nav.Link as={Link} href="/forgot-password">Forgot Password?</Nav.Link>
+                
                 <Nav.Link as={Link} href="/send-verification-code">Verify?</Nav.Link>
               </>
             )}
           </Nav>
           {isAuthenticated && (
             <div className="d-flex">
-              <SignOutButton />
+              test
             </div>
           )}
         </Navbar.Collapse>

@@ -3,6 +3,7 @@ import Header from "../components/Hearder"
 import Footer from "../components/footer"
 import "./global.css"
 
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const metadata = {
