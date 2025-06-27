@@ -25,9 +25,9 @@ export default function Page() {
 
       if (response.ok) {
         setSuccess("📬 Verification Code Sent To Your Email.")
-		setTimeout(() => {
-			router.push('/verify-verification-code');
-		}, 2000);
+        setTimeout(() => {
+          router.push('/verify-verification-code');
+        }, 2000);
       } else {
         // Check if the error came from the `email` field and if thats
         // the case, pop up the error message
