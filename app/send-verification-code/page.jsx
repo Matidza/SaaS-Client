@@ -29,7 +29,8 @@ export default function Page() {
 			router.push('/verify-verification-code');
 		}, 2000);
       } else {
-        // Check if the error came from the `email` field
+        // Check if the error came from the `email` field and if thats
+        // the case, pop up the error message
         if (result.field === 'email') {
           setEmailError(result.message)
         } else {
