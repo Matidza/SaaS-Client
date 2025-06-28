@@ -6,12 +6,14 @@ import { useRouter } from 'next/navigation'
 export default function Page() {
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState(null)
-  const [success, setSuccess] = useState(null);
-  const router = useRouter();
+  const [success, setSuccess] = useState(null)
+  const [generalError, setGeneralError] = useState(null)
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setEmailError(null)
+    setGeneralError(null)
     setSuccess(null)
 
     try {
@@ -23,32 +25,31 @@ export default function Page() {
 
       const result = await response.json()
 
-      if (response.ok) {
-        setSuccess("📬 Verification Code Sent To Your Email.")
+      if (response.ok && result.success) {
+        setSuccess(result.message || "📬 Verification Code Sent To Your Email.")
         setTimeout(() => {
-          router.push('/verify-verification-code');
-        }, 2000);
+          router.push('/verify-verification-code')
+        }, 2000)
       } else {
-        // Check if the error came from the `email` field and if thats
-        // the case, pop up the error message
         if (result.field === 'email') {
-          setEmailError(result.message)
+          setEmailError(result.message || "Invalid email.")
         } else {
-          setEmailError("An unexpected error occurred.")
+          setGeneralError(result.message || "An unexpected error occurred.")
         }
       }
     } catch (err) {
-      setEmailError("Something went wrong. Please try again.")
+      setGeneralError("Something went wrong. Please try again.")
     }
   }
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 border border-white shadow-md">
       <Row className="justify-content-center">
         <Col md={6}>
           <h4 className="text-center mb-4">Send Verification Code</h4>
 
           {success && <Alert variant="success">{success}</Alert>}
+          {generalError && <Alert variant="danger">{generalError}</Alert>}
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formEmail" className="mb-3">
@@ -65,7 +66,7 @@ export default function Page() {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100">
+            <Button variant="success" type="submit" className="w-100">
               Send Code
             </Button>
           </Form>
@@ -74,4 +75,3 @@ export default function Page() {
     </Container>
   )
 }
-

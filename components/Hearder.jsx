@@ -24,8 +24,8 @@ export default function Header() {
             {!isAuthenticated && (
               <>
                 <Nav.Link as={Link} href="/signin">Sign In</Nav.Link>
-                
                 <Nav.Link as={Link} href="/send-verification-code">Verify?</Nav.Link>
+                
               </>
             )}
           </Nav>

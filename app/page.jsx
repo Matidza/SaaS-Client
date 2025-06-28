@@ -54,7 +54,7 @@ export default function Page() {
     
 
     return (
-        <Container className="mt-4 border border-white-900 shadow-md">
+        <Container className="mt-5 border border-white-100 shadow-md">
             <Row className="justify-content-center">
                 <Col md={7}>
                     <h4 className="text-center text-2xl text-gray-400 mb-4 mt-3">Don&rsquo;t have an account? <strong>Create One</strong></h4>
@@ -94,7 +94,7 @@ export default function Page() {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Button variant="success" type="submit" className="btn  w-50">
+                        <Button variant="success" type="submit" className="btn  w-100">
                             Create Account
                         </Button>
                         

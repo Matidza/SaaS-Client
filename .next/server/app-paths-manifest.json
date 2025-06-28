@@ -1,6 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
+  "/forgot-password/page": "app/forgot-password/page.js",
   "/send-verification-code/page": "app/send-verification-code/page.js",
-  "/verify-verification-code/page": "app/verify-verification-code/page.js"
+  "/signin/page": "app/signin/page.js",
+  "/reset-password/page": "app/reset-password/page.js"
 }

@@ -29,9 +29,9 @@ export default function Page() {
             const result = await response.json()
     
             if (response.ok) {
+                //console.log(result)
                 // ✅ Save the token to localStorage
                 localStorage.setItem('accessToken', result.accessToken)
-    
                 setSuccessMessage("🎉 Logged in successfully! Redirecting...")
                 ////setTimeout(() => router.push('/dashboard'), 2000)
             } else {
@@ -51,7 +51,7 @@ export default function Page() {
     
 
     return (
-        <Container className="mt-4">
+        <Container className="mt-5 border border-white shadow-md">
             <Row className="justify-content-center">
                 <Col md={6}>
                     <h4 className="text-center mb-4">Welcome back! <strong>Sign In</strong></h4>
