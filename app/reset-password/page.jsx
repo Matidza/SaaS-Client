@@ -10,7 +10,8 @@ export default function Page() {
 	const [newPassword, setNewPassword] = useState('')
 	const [emailError, setEmailError] = useState(null)
 	const [codeError, setCodeError] = useState(null)
-	const [error, setError] = useState(null)
+	const [passwordError, setPasswordError] = useState(null)
+	const [generalError, setGeneralError] = useState(null)
 	const [success, setSuccess] = useState(null)
 	const [loading, setLoading] = useState(false)
 
@@ -19,10 +20,11 @@ export default function Page() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setLoading(true)
-		setError(null)
-		setSuccess(null)
 		setEmailError(null)
 		setCodeError(null)
+		setPasswordError(null)
+		setGeneralError(null)
+		setSuccess(null)
 
 		try {
 			const response = await fetch('http://localhost:8000/api/auth/reset-password', {
@@ -35,26 +37,24 @@ export default function Page() {
 
 			const result = await response.json()
 
-			if (response.ok) {
-				setSuccess("✅ Password reset successfully.")
+			if (response.ok && result.success) {
+				setSuccess(result.message || "✅ Password reset successfully.")
 				setTimeout(() => {
-					router.push('/signin') // Update route as needed
+					router.push('/signin')
 				}, 2000)
 			} else {
-				// Field-specific error handling
 				if (result.field === 'email') {
 					setEmailError(result.message)
 				} else if (result.field === 'providedCodeValue') {
 					setCodeError(result.message)
 				} else if (result.field === 'newPassword') {
-					setCodeError(result.message)
-				} 
-				else {
-					setError(result.message || "An unexpected error occurred.")
+					setPasswordError(result.message)
+				} else {
+					setGeneralError(result.message || "An unexpected error occurred.")
 				}
 			}
 		} catch (err) {
-			setError("🚨 Failed to connect to server.")
+			setGeneralError("🚨 Failed to connect to the server.")
 		} finally {
 			setLoading(false)
 		}
@@ -64,9 +64,9 @@ export default function Page() {
 		<Container className="mt-5 border border-white shadow-md">
 			<Row className="justify-content-center">
 				<Col md={6}>
-					<h4 className="text-center mb-4">Verify and reset password!</h4>
+					<h4 className="text-center mb-4">Reset Your Password</h4>
 
-					{error && <Alert variant="danger">{error}</Alert>}
+					{generalError && <Alert variant="danger">{generalError}</Alert>}
 					{success && <Alert variant="success">{success}</Alert>}
 
 					<Form onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ export default function Page() {
 							<Form.Label>Email address</Form.Label>
 							<Form.Control
 								type="email"
-								placeholder="Enter email"
+								placeholder="Enter your email"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								isInvalid={!!emailError}
@@ -85,11 +85,11 @@ export default function Page() {
 							</Form.Control.Feedback>
 						</Form.Group>
 
-						<Form.Group controlId="providedCodeValue" className="mb-3">
+						<Form.Group controlId="formCode" className="mb-3">
 							<Form.Label>Verification Code</Form.Label>
 							<Form.Control
 								type="text"
-								placeholder="Enter code"
+								placeholder="Enter the code"
 								value={providedCodeValue}
 								onChange={(e) => setprovidedCodeValue(e.target.value)}
 								isInvalid={!!codeError}
@@ -100,23 +100,23 @@ export default function Page() {
 							</Form.Control.Feedback>
 						</Form.Group>
 
-						<Form.Group controlId="providedCodeValue" className="mb-3">
-							<Form.Label>Reset password</Form.Label>
+						<Form.Group controlId="formPassword" className="mb-3">
+							<Form.Label>New Password</Form.Label>
 							<Form.Control
 								type="password"
 								placeholder="Enter new password"
 								value={newPassword}
 								onChange={(e) => setNewPassword(e.target.value)}
-								isInvalid={!!codeError}
+								isInvalid={!!passwordError}
 								required
 							/>
 							<Form.Control.Feedback type="invalid">
-								{codeError}
+								{passwordError}
 							</Form.Control.Feedback>
 						</Form.Group>
 
 						<Button variant="success" type="submit" className="w-100" disabled={loading}>
-							{loading ? "Verifying and reseting..." : "Reset password"}
+							{loading ? "Resetting..." : "Reset Password"}
 						</Button>
 					</Form>
 				</Col>
