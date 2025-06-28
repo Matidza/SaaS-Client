@@ -10,45 +10,52 @@ export default function Page() {
     const [emailError, setEmailError] = useState(null)
     const [passwordError, setPasswordError] = useState(null)
     const [successMessage, setSuccessMessage] = useState(null)
+    const [generalError, setGeneralError] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const router = useRouter()
 
+    const isFormValid = email.trim() !== '' && password.trim() !== ''
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         setEmailError(null)
         setPasswordError(null)
         setSuccessMessage(null)
-    
+        setGeneralError(null)
+
         try {
             const response = await fetch('http://localhost:8000/api/auth/signin', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password })
             })
-    
+
             const result = await response.json()
-    
-            if (response.ok) {
-                //console.log(result)
-                // ✅ Save the token to localStorage
+
+            if (response.ok && result.success) {
                 localStorage.setItem('accessToken', result.accessToken)
-                setSuccessMessage("🎉 Logged in successfully! Redirecting...")
-                ////setTimeout(() => router.push('/dashboard'), 2000)
+                localStorage.setItem('userId', result.user)
+
+                setSuccessMessage(result.message || "🎉 Logged in successfully!")
+                setTimeout(() => router.push('/dashboard'), 2000)
             } else {
                 if (result.field === 'email') {
                     setEmailError(result.message)
                 } else if (result.field === 'password') {
                     setPasswordError(result.message)
                 } else {
-                    alert(result.message)
+                    setGeneralError(result.message || "An unexpected error occurred.")
                 }
             }
         } catch (err) {
-            alert("Something went wrong. Please try again.")
+            setGeneralError("Something went wrong. Please try again.")
             console.error("Signin Error:", err.message)
+        } finally {
+            setLoading(false)
         }
     }
-    
 
     return (
         <Container className="mt-5 border border-white shadow-md">
@@ -56,6 +63,7 @@ export default function Page() {
                 <Col md={6}>
                     <h4 className="text-center mb-4">Welcome back! <strong>Sign In</strong></h4>
 
+                    {generalError && <Alert variant="danger">{generalError}</Alert>}
                     {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
                     <Form onSubmit={handleSubmit}>
@@ -67,6 +75,7 @@ export default function Page() {
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                                 isInvalid={!!emailError}
+                                required
                             />
                             <Form.Control.Feedback type="invalid">
                                 {emailError}
@@ -81,14 +90,15 @@ export default function Page() {
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 isInvalid={!!passwordError}
+                                required
                             />
                             <Form.Control.Feedback type="invalid">
                                 {passwordError}
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Button variant="success" type="submit" className="w-100">
-                            Sign In
+                        <Button variant="success" type="submit" className="w-100" disabled={loading || !isFormValid}>
+                            {loading ? "Signing in..." : "Sign In"}
                         </Button>
 
                         <div className="text-center mt-3">
