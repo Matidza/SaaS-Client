@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react"
-import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap"
+import { Form, Button, Alert, Container, Row, Col, Spinner } from "react-bootstrap"
 import { useRouter } from 'next/navigation'
 
 export default function Page() {
@@ -8,13 +8,17 @@ export default function Page() {
 	const [success, setSuccess] = useState(null)
 	const [emailError, setEmailError] = useState(null)
 	const [generalError, setGeneralError] = useState(null)
+	const [loading, setLoading] = useState(false)
+
 	const router = useRouter()
 
+	const isFormValid = email.trim() !== ''
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setSuccess(null)
 		setEmailError(null)
 		setGeneralError(null)
+		setLoading(true)
 
 		try {
 			const response = await fetch('http://localhost:8000/api/auth/forgot-password', {
@@ -67,9 +71,14 @@ export default function Page() {
 							</Form.Control.Feedback>
 						</Form.Group>
 
-						<Button variant="success" type="submit" className="w-100">
-							Submit
-						</Button>
+						<Button
+                            variant="success"
+                            type="submit"
+                            className="w-100"
+                            disabled={!isFormValid || loading}
+                        >
+                            {loading ? <Spinner animation="border" size="sm" /> : "Send code"}
+                        </Button>
 					</Form>
 				</Col>
 			</Row>

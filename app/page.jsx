@@ -4,7 +4,9 @@ import Link from "next/link"
 import { useRouter } from 'next/navigation'
 import { Form, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap'
 
-export default function Page() {
+
+
+export default  function Page() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState(null)
@@ -12,10 +14,10 @@ export default function Page() {
     const [successMessage, setSuccessMessage] = useState(null)
     const [generalError, setGeneralError] = useState(null)
     const [loading, setLoading] = useState(false)
-
+    
     const router = useRouter()
 
-    const isFormValid = email.trim() !== '' && password.trim().length >= 8
+    const isFormValid = email.trim() !== '' && password.trim() !== ''
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -54,7 +56,7 @@ export default function Page() {
     }
 
     return (
-        <Container className="mt-5 border border-white-100 shadow-md">
+        <Container className="mt-5 border border-white shadow-md">
             <Row className="justify-content-center">
                 <Col md={7}>
                     <h4 className="text-center text-2xl text-gray-400 mb-4 mt-3">

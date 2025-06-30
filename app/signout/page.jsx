@@ -22,6 +22,7 @@ export default function SignOutButton() {
 
       // Clear token from localStorage
       localStorage.removeItem('accessToken')
+      localStorage.removeItem('userId')
 
       // Redirect to Sign In page
       router.push('/signin')

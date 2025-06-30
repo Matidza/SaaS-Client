@@ -2,7 +2,8 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap'
+
 
 export default function Page() {
     const [email, setEmail] = useState('')
@@ -29,17 +30,20 @@ export default function Page() {
             const response = await fetch('http://localhost:8000/api/auth/signin', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ email, password })
             })
 
             const result = await response.json()
 
             if (response.ok && result.success) {
-                localStorage.setItem('accessToken', result.accessToken)
+                
+                localStorage.setItem('accessToken', result.accessToken) 
                 localStorage.setItem('userId', result.user)
+               
 
                 setSuccessMessage(result.message || "🎉 Logged in successfully!")
-                setTimeout(() => router.push('/dashboard'), 2000)
+                setTimeout(() => router.push(''), 2000)
             } else {
                 if (result.field === 'email') {
                     setEmailError(result.message)
@@ -97,8 +101,13 @@ export default function Page() {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Button variant="success" type="submit" className="w-100" disabled={loading || !isFormValid}>
-                            {loading ? "Signing in..." : "Sign In"}
+                        <Button
+                            variant="success"
+                            type="submit"
+                            className="w-100"
+                            disabled={!isFormValid || loading}
+                        >
+                            {loading ? <Spinner animation="border" size="sm" /> : "Sign In"}
                         </Button>
 
                         <div className="text-center mt-3">
@@ -107,10 +116,11 @@ export default function Page() {
                     </Form>
 
                     <div className="text-center mt-4">
-                        <Link href="/signup">Don’t have an account? Create one</Link>
+                        <Link href="/">Don’t have an account? Create one</Link>
                     </div>
                 </Col>
             </Row>
         </Container>
     )
 }
+

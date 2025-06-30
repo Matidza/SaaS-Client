@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from "react"
-import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap"
+import { Form, Button, Alert, Container, Row, Col, Spinner } from "react-bootstrap"
 import { useRouter } from 'next/navigation'
 
 export default function Page() {
@@ -14,6 +14,8 @@ export default function Page() {
 	const [loading, setLoading] = useState(false)
 
 	const router = useRouter()
+
+	const isFormValid = email.trim() !== '' && providedCodeValue.trim() !== ''
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -94,9 +96,14 @@ export default function Page() {
 							</Form.Control.Feedback>
 						</Form.Group>
 
-						<Button variant="success" type="submit" className="w-100" disabled={loading}>
-							{loading ? "Verifying..." : "Verify Code"}
-						</Button>
+						<Button
+                            variant="success"
+                            type="submit"
+                            className="w-100"
+                            disabled={!isFormValid || loading}
+                        >
+                            {loading ? <Spinner animation="border" size="sm" /> : "Verify Code"}
+                        </Button>
 					</Form>
 				</Col>
 			</Row>
