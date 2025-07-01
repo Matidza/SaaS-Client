@@ -1,7 +1,3 @@
 {
-  "/page": "app/page.js",
-  "/signin/page": "app/signin/page.js",
-  "/signout/page": "app/signout/page.js",
-  "/change-password/page": "app/change-password/page.js",
-  "/allData/page": "app/allData/page.js"
+  "/page": "app/page.js"
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
 import { Form, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap'
-
+import { FaGoogle, FaGithub, FaLinkedin } from "react-icons/fa"
 
 
 export default  function Page() {
@@ -115,28 +115,39 @@ export default  function Page() {
                             {loading ? <Spinner animation="border" size="sm" /> : "Create Account"}
                         </Button>
 
-                        <Button
-                            variant="outline-primary"
-                            className="w-48 mt-3 mx-2"
-                            onClick={() => window.location.href = "http://localhost:8000/api/auth/google"}
-                            >
-                            Sign up with Google
-                        </Button>
-                        <Button
-                            variant="outline-dark"
-                            className="w-48 mt-3 mx-1 "
-                            onClick={() => window.location.href = "http://localhost:8000/api/auth/github"}
-                            >
-                            Sign up with GitHub
-                        </Button>
+                       
+<div className="text-center mt-4">
+    <p className="mb-2 text-muted">Or sign up with</p>
+    <div className="d-flex justify-content-center gap-3 flex-wrap">
+        <Button
+            variant="light"
+            className="d-flex align-items-center border border-secondary"
+            onClick={() => window.location.href = "http://localhost:8000/api/auth/google"}
+        >
+            <FaGoogle size={20} color="#DB4437" className="me-2" />
+            Google
+        </Button>
 
-                        <Button
-                            variant="outline-dark"
-                            className="w-30 mt-3 mx-1 "
-                            onClick={() => window.location.href = "http://localhost:8000/api/auth/github"}
-                            >
-                            Sign up with LinkedIn
-                        </Button>
+        <Button
+            variant="light"
+            className="d-flex align-items-center border border-secondary"
+            onClick={() => window.location.href = "http://localhost:8000/api/auth/github"}
+        >
+            <FaGithub size={20} color="#333" className="me-2" />
+            GitHub
+        </Button>
+
+        <Button
+            variant="light"
+            className="d-flex align-items-center border border-secondary"
+            onClick={() => window.location.href = "http://localhost:8000/api/auth/linkedin"}
+        >
+            <FaLinkedin size={20} color="#0077B5" className="me-2" />
+            LinkedIn
+        </Button>
+    </div>
+</div>
+
 
                         <div className="text-center mt-3 mb-3">
                             <Link href="/signin">Already have an account? Sign In</Link>
