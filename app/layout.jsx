@@ -2,7 +2,7 @@ import "./global.css"
 import Header from "../components/Hearder"
 import Footer from "../components/footer"
 import "./global.css"
-
+import { AuthProvider } from '../contexts/AuthContexts'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -55,15 +55,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="d-flex flex-column min-vh-100">
-        <Header />
-        
-        <main className="container mx-auto p-10">
-          {children}
-        </main>
-
-        <Footer />
-      </body>
+      <AuthProvider>
+        <body className="d-flex flex-column min-vh-100">
+          <Header />
+          <main className="container mx-auto p-10">
+            {children}
+          </main>
+          <Footer />
+        </body>
+      </AuthProvider>
     </html>
   )
 }

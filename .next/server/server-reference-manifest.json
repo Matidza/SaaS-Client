@@ -1,25 +1,14 @@
 {
   "node": {
-    "004c2e7d3f70f4f996246d75c05876db090ca4ab7f": {
+    "000e33db31c53b5782bf7aa1935321351b0174a683": {
       "workers": {
-        "app/signin/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CZwivhuya%20M.%20Mukwevho%5C%5CWORK%20PROJECTS%5C%5CSaaS%5C%5CFrontend-Services%5C%5CSaaS-Client%5C%5Clibrary%5C%5Ccookies.jsx%22%2C%5B%7B%22id%22%3A%22008ba5929d661284861b3818188df3d206c0f53f21%22%2C%22exportedName%22%3A%22default%22%7D%5D%5D%5D&__client_imported__=true!",
+        "app/allData/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CZwivhuya%20M.%20Mukwevho%5C%5CWORK%20PROJECTS%5C%5CSaaS%5C%5CFrontend-Services%5C%5CSaaS-Client%5C%5Capp%5C%5CallData%5C%5Cpage.jsx%22%2C%5B%7B%22id%22%3A%22000e33db31c53b5782bf7aa1935321351b0174a683%22%2C%22exportedName%22%3A%22default%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
         }
       },
       "layer": {
-        "app/signin/page": "action-browser"
-      }
-    },
-    "008ba5929d661284861b3818188df3d206c0f53f21": {
-      "workers": {
-        "app/signin/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CZwivhuya%20M.%20Mukwevho%5C%5CWORK%20PROJECTS%5C%5CSaaS%5C%5CFrontend-Services%5C%5CSaaS-Client%5C%5Clibrary%5C%5Ccookies.jsx%22%2C%5B%7B%22id%22%3A%22008ba5929d661284861b3818188df3d206c0f53f21%22%2C%22exportedName%22%3A%22default%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/signin/page": "action-browser"
+        "app/allData/page": "rsc"
       }
     }
   },

@@ -31,12 +31,17 @@ export default  function Page() {
             const response = await fetch('http://localhost:8000/api/auth/signup', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ email, password })
             })
 
             const result = await response.json()
 
             if (response.ok && result.success) {
+
+                localStorage.setItem('accessToken', result.accessToken) 
+                localStorage.setItem('userId', result.user)
+                
                 setSuccessMessage(result.message)
                 setTimeout(() => {
                     router.push('/signin')
@@ -108,6 +113,29 @@ export default  function Page() {
                             disabled={!isFormValid || loading}
                         >
                             {loading ? <Spinner animation="border" size="sm" /> : "Create Account"}
+                        </Button>
+
+                        <Button
+                            variant="outline-primary"
+                            className="w-48 mt-3 mx-2"
+                            onClick={() => window.location.href = "http://localhost:8000/api/auth/google"}
+                            >
+                            Sign up with Google
+                        </Button>
+                        <Button
+                            variant="outline-dark"
+                            className="w-48 mt-3 mx-1 "
+                            onClick={() => window.location.href = "http://localhost:8000/api/auth/github"}
+                            >
+                            Sign up with GitHub
+                        </Button>
+
+                        <Button
+                            variant="outline-dark"
+                            className="w-30 mt-3 mx-1 "
+                            onClick={() => window.location.href = "http://localhost:8000/api/auth/github"}
+                            >
+                            Sign up with LinkedIn
                         </Button>
 
                         <div className="text-center mt-3 mb-3">

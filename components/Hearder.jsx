@@ -7,11 +7,32 @@ import { Navbar, Nav, Container } from 'react-bootstrap'
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken')
-    setIsAuthenticated(!!token)
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('http://localhost:8000/api/auth/check-auth', {
+          credentials: 'include', // send HttpOnly cookies
+        })
+
+        const data = await res.json()
+        if (res.ok && data.success) {
+          setIsAuthenticated(true)
+        } else {
+          setIsAuthenticated(false)
+        }
+      } catch (err) {
+        setIsAuthenticated(false)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    checkAuth()
   }, [])
+
+  if (loading) return null // or a spinner if you want
 
   return (
     <Navbar bg="light" expand="lg">
@@ -19,28 +40,25 @@ export default function Header() {
         <Navbar.Brand as={Link} href="/">Initia</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            
+          <Nav className="ms-auto">
             {!isAuthenticated && (
               <>
-                <Nav.Link as={Link} href="/signin">sign In</Nav.Link>
-                <Nav.Link as={Link} href="/send-verification-code">verify account</Nav.Link>         
+                <Nav.Link as={Link} href="/signin">Sign In</Nav.Link>
+                <Nav.Link as={Link} href="/send-verification-code">Verify Account</Nav.Link>         
               </>
             )}
           </Nav>
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             {isAuthenticated && (
-            <>
-              <Nav.Link as={Link} href="/allData">All data</Nav.Link>
-              <Nav.Link as={Link} href="/signout">signout</Nav.Link>
-              <Nav.Link as={Link} href="/change-password">change password</Nav.Link>
-            </>
-          )}
+              <>
+                <Nav.Link as={Link} href="/allData">All Data</Nav.Link>
+                <Nav.Link as={Link} href="/change-password">Change Password</Nav.Link>
+                <SignOutButton />
+              </>
+            )}
           </Nav>
-          
         </Navbar.Collapse>
       </Container>
     </Navbar>
   )
 }
-

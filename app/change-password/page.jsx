@@ -26,20 +26,19 @@ export default function Page() {
     setError(null);
     setSuccess(null);
     setLoading(true);
-
+  
     try {
-      const token = localStorage.getItem('accessToken');
       const response = await fetch('http://localhost:8000/api/auth/change-password', {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
+        credentials: 'include', // 🔥 this sends the httpOnly cookie
         body: JSON.stringify({ oldPassword, newPassword })
       });
-
+  
       const result = await response.json();
-
+  
       if (response.ok) {
         setSuccess(result.message);
         setOldPassword('');
@@ -55,6 +54,7 @@ export default function Page() {
       setLoading(false);
     }
   };
+  
 
   return (
     <Container className="mt-5 border border-white shadow-md">

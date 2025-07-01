@@ -9,30 +9,28 @@ export default function SignOutButton() {
   const [loading, setLoading] = useState(false)
 
   const handleSignOut = async () => {
-    setLoading(true)
-
-    const token = localStorage.getItem('accessToken')
+    setLoading(true);
+  
     try {
       await fetch('http://localhost:8000/api/auth/signout', {
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      // Clear token from localStorage
-      localStorage.removeItem('accessToken')
-      localStorage.removeItem('userId')
-
-      // Redirect to Sign In page
-      router.push('/signin')
+        credentials: 'include' // 🔥 include cookies
+      });
+  
+      // Optional: clean up UI state/localStorage
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('userId');
+  
+      // Redirect to Sign In
+      router.push('/signin');
     } catch (error) {
-      console.error('Error during sign out:', error)
-      alert('Failed to sign out. Please try again.')
+      console.error('Error during sign out:', error);
+      alert('Failed to sign out. Please try again.');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
+  
 
   return (
     <Button variant="danger" onClick={handleSignOut} disabled={loading}>
