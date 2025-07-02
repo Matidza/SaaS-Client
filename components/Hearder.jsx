@@ -3,7 +3,7 @@
 import Link from "next/link"
 import SignOutButton from "../app/signout/page"
 import { useEffect, useState } from 'react'
-import { Navbar, Nav, Container } from 'react-bootstrap'
+import { Navbar, Nav, Container, Spinner } from 'react-bootstrap'
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -32,7 +32,7 @@ export default function Header() {
     checkAuth()
   }, [])
 
-  if (loading) return null // or a spinner if you want
+  if (loading) return null // or <Spinner animation="border" size="sm" />
 
   return (
     <Navbar bg="light" expand="lg">
@@ -41,15 +41,12 @@ export default function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            {!isAuthenticated && (
+            {!isAuthenticated ? (
               <>
                 <Nav.Link as={Link} href="/signin">Sign In</Nav.Link>
                 <Nav.Link as={Link} href="/send-verification-code">Verify Account</Nav.Link>         
               </>
-            )}
-          </Nav>
-          <Nav className="ms-auto">
-            {isAuthenticated && (
+            ) : (
               <>
                 <Nav.Link as={Link} href="/allData">All Data</Nav.Link>
                 <Nav.Link as={Link} href="/change-password">Change Password</Nav.Link>

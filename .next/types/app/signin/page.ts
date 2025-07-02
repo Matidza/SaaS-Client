@@ -1,8 +1,8 @@
-// File: C:\Users\Zwivhuya M. Mukwevho\WORK PROJECTS\SaaS\Frontend-Services\SaaS-Client\app\change-password\page.jsx
-import * as entry from '../../../../app/change-password/page.js'
+// File: C:\Users\Zwivhuya M. Mukwevho\WORK PROJECTS\SaaS\Frontend-Services\SaaS-Client\app\signin\page.jsx
+import * as entry from '../../../../app/signin/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../app/change-password/page.js')
+type TEntry = typeof import('../../../../app/signin/page.js')
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
   ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }

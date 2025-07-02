@@ -116,37 +116,37 @@ export default  function Page() {
                         </Button>
 
                        
-<div className="text-center mt-4">
-    <p className="mb-2 text-muted">Or sign up with</p>
-    <div className="d-flex justify-content-center gap-3 flex-wrap">
-        <Button
-            variant="light"
-            className="d-flex align-items-center border border-secondary"
-            onClick={() => window.location.href = "http://localhost:8000/api/auth/google"}
-        >
-            <FaGoogle size={20} color="#DB4437" className="me-2" />
-            Google
-        </Button>
+                        <div className="text-center mt-4">
+                            <p className="mb-2 text-muted">Or sign up with</p>
+                            <div className="d-flex justify-content-center gap-3 flex-wrap">
+                                <Button
+                                    variant="light"
+                                    className="d-flex align-items-center border border-secondary"
+                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/google"}
+                                >
+                                    <FaGoogle size={20} color="#DB4437" className="me-2" />
+                                    Google
+                                </Button>
 
-        <Button
-            variant="light"
-            className="d-flex align-items-center border border-secondary"
-            onClick={() => window.location.href = "http://localhost:8000/api/auth/github"}
-        >
-            <FaGithub size={20} color="#333" className="me-2" />
-            GitHub
-        </Button>
+                                <Button
+                                    variant="light"
+                                    className="d-flex align-items-center border border-secondary"
+                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/github"}
+                                >
+                                    <FaGithub size={20} color="#333" className="me-2" />
+                                    GitHub
+                                </Button>
 
-        <Button
-            variant="light"
-            className="d-flex align-items-center border border-secondary"
-            onClick={() => window.location.href = "http://localhost:8000/api/auth/linkedin"}
-        >
-            <FaLinkedin size={20} color="#0077B5" className="me-2" />
-            LinkedIn
-        </Button>
-    </div>
-</div>
+                                <Button
+                                    variant="light"
+                                    className="d-flex align-items-center border border-secondary"
+                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/linkedin"}
+                                >
+                                    <FaLinkedin size={20} color="#0077B5" className="me-2" />
+                                    LinkedIn
+                                </Button>
+                            </div>
+                        </div>
 
 
                         <div className="text-center mt-3 mb-3">

@@ -39,7 +39,7 @@ export default function Page() {
             if (response.ok && result.success) {
                 
                 localStorage.setItem('accessToken', result.accessToken) 
-                localStorage.setItem('userId', result.user)
+                localStorage.setItem('userId', result.userId)
                
 
                 setSuccessMessage(result.message || "🎉 Logged in successfully!")

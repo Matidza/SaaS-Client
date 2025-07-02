@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Container, Row, Col, Form, Button, Alert, InputGroup } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, Alert, InputGroup, Spinner } from 'react-bootstrap'
 import { EyeFill, EyeSlashFill } from 'react-bootstrap-icons'
 
 export default function Page() {
@@ -19,6 +19,26 @@ export default function Page() {
   const router = useRouter();
   const isFormValid = oldPassword.trim() && newPassword.trim().length >= 8;
 
+  // 🔒 Check auth on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('http://localhost:8000/api/auth/check-auth', {
+          method: 'GET',
+          credentials: 'include',
+        });
+
+        if (!res.ok) {
+          router.push('/signin'); // redirect to signin if not logged in
+        }
+      } catch (err) {
+        router.push('/signin'); // redirect on error
+      }
+    };
+
+    checkAuth();
+  }, [router]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setOldPasswordError(null);
@@ -33,7 +53,7 @@ export default function Page() {
         headers: {
           'Content-Type': 'application/json'
         },
-        credentials: 'include', // 🔥 this sends the httpOnly cookie
+        credentials: 'include',
         body: JSON.stringify({ oldPassword, newPassword })
       });
   
@@ -54,7 +74,6 @@ export default function Page() {
       setLoading(false);
     }
   };
-  
 
   return (
     <Container className="mt-5 border border-white shadow-md">
@@ -116,15 +135,15 @@ export default function Page() {
               </InputGroup>
             </Form.Group>
 
-          <Button
+            <Button
               variant="success"
               type="submit"
               className="w-100"
               disabled={!isFormValid || loading}
-          >
+            >
               {loading ? <Spinner animation="border" size="sm" /> : "Reset Password"}
-          </Button>
-            
+            </Button>
+
           </Form>
         </Col>
       </Row>
