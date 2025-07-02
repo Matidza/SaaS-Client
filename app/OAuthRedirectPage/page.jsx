@@ -1,22 +1,29 @@
-'use client'
+'use client';
 
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function OAuthRedirectPage() {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const token = urlParams.get("token")
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    const error = params.get("error");
+
+    if (error) {
+      console.error("OAuth Error:", error);
+      router.push("/signin");
+      return;
+    }
 
     if (token) {
-      localStorage.setItem("accessToken", token)
-      router.push("/dashboard")  // redirect to dashboard or home page for logged-in user
+      localStorage.setItem("accessToken", token);
+      router.push("/signin");
     } else {
-      router.push("/signin") // redirect to signin if no token
+      router.push("/signin");
     }
-  }, [router])
+  }, [router]);
 
-  return <p>Redirecting...</p>
+  return <p>Redirecting...</p>;
 }
