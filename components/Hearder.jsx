@@ -35,7 +35,7 @@ export default function Header() {
   if (loading) return null // or <Spinner animation="border" size="sm" />
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="white" className="border border-b-dark" expand="lg">
       <Container>
         <Navbar.Brand as={Link} href="/">Initia</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,14 +43,16 @@ export default function Header() {
           <Nav className="ms-auto">
             {!isAuthenticated ? (
               <>
-                <Nav.Link as={Link} href="/signin">Sign In</Nav.Link>
-                <Nav.Link as={Link} href="/send-verification-code">Verify Account</Nav.Link>         
+                <Nav.Link as={Link} href="/send-verification-code" className="mt-2">Enterprise</Nav.Link>  
+                <Nav.Link as={Link} href="/send-verification-code"className="mt-2">Pricing</Nav.Link>  
+                <Nav.Link as={Link} href="/signin"className="mt-2">Sign In</Nav.Link>
+                <Nav.Link as={Link} href="/signup" ><button className="btn btn-white border border-success border-2 text-success ">Sign Up</button></Nav.Link>        
               </>
             ) : (
               <>
                 <Nav.Link as={Link} href="/allData">All Data</Nav.Link>
                 <Nav.Link as={Link} href="/change-password">Change Password</Nav.Link>
-                <SignOutButton />
+                <SignOutButton className="" />
               </>
             )}
           </Nav>

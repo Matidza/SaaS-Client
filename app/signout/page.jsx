@@ -33,7 +33,7 @@ export default function SignOutButton() {
   
 
   return (
-    <Button variant="danger" onClick={handleSignOut} disabled={loading}>
+    <Button variant="danger bg-white text-danger" onClick={handleSignOut} disabled={loading}>
       {loading ? 'Signing out...' : 'Sign Out'}
     </Button>
   )

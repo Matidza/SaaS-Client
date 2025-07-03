@@ -58,7 +58,7 @@ export default function RootLayout({ children }) {
       <AuthProvider>
         <body className="d-flex flex-column min-vh-100">
           <Header />
-          <main className="container mx-auto p-10">
+          <main className="container mx-auto p-10 mt-3">
             {children}
           </main>
           <Footer />
