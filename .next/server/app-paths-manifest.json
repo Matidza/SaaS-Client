@@ -1,7 +1,7 @@
 {
-  "/signup/page": "app/signup/page.js",
-  "/allData/page": "app/allData/page.js",
-  "/change-password/page": "app/change-password/page.js",
-  "/page": "app/page.js",
-  "/signin/page": "app/signin/page.js"
+  "/AUTH_MICROSERVICE/send-verification-code/page": "app/AUTH_MICROSERVICE/send-verification-code/page.js",
+  "/AUTH_MICROSERVICE/signup/page": "app/AUTH_MICROSERVICE/signup/page.js",
+  "/AUTH_MICROSERVICE/change-password/page": "app/AUTH_MICROSERVICE/change-password/page.js",
+  "/AUTH_MICROSERVICE/signin/page": "app/AUTH_MICROSERVICE/signin/page.js",
+  "/AUTH_MICROSERVICE/verify-verification-code/page": "app/AUTH_MICROSERVICE/verify-verification-code/page.js"
 }
