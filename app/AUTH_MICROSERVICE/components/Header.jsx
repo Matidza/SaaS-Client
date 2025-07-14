@@ -35,18 +35,29 @@ export default function Header() {
   if (loading) return null // or <Spinner animation="border" size="sm" />
 
   return (
-    <Navbar bg="white" className="shadow-sm p-3 mb-5 w-auto" expand="lg">
+    <Navbar bg="white" className="shadow-sm w-auto" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} href="/AUTH_MICROSERVICE/" className="fs-2 fw-bolder">Initia</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+        <Navbar.Brand as={Link} href="/AUTH_MICROSERVICE/" > 
+          <h1 className="fs-2 fw-bolder text-black">initiA<span className="text-primary text-wrap">.</span> </h1>
+        </Navbar.Brand>
+
+        <Navbar.Toggle aria-controls="basic-navbar-nav " />
+        <Navbar.Collapse id="basic-navbar-nav ">
+          <Nav className="ms-auto ">
             {!isAuthenticated ? (
               <>
-                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/send-verification-code" className="mt-2 fs-6 fst-normal">Enterprise</Nav.Link>  
-                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/send-verification-code"className="mt-2 fs-6 fst-normal">Pricing</Nav.Link>  
-                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/signin"className="mt-2 fs-6 fst-normal">Sign In</Nav.Link>
-                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/signup" ><button className="btn btn-white border border-success border-1 text-success ">Join</button></Nav.Link>        
+
+                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/signin">
+                  <button  className="btn btn-white border rounded-pill   text-black border-1 border-dark fw-light">
+                    Sign In
+                  </button>
+                </Nav.Link>
+
+                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/signup-as-professional" >
+                  <button className="btn btn-dark rounded-pill border-dark border-1 text-white fs-6 fw-light ">
+                  Join as Professional
+                  </button>
+                </Nav.Link>        
               </>
             ) : (
               <>

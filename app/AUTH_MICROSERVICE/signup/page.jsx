@@ -39,6 +39,8 @@ export default function Page() {
             if (response.ok && result.success) {
                 localStorage.setItem('accessToken', result.accessToken) 
                 localStorage.setItem('userId', result.user)
+                localStorage.setItem('user_type', result.user_type) 
+
 
                 setSuccessMessage(result.message)
 
@@ -47,7 +49,7 @@ export default function Page() {
                 setPassword('')
 
                 setTimeout(() => {
-                    router.push('/signin')
+                    router.push('/AUTH_MICROSERVICE/signin')
                 }, 2000)
             } else {
                 if (result.field === 'email') setEmailError(result.message)
@@ -67,20 +69,21 @@ export default function Page() {
         <Container className="mt-3 border border-white shadow-md">
             <Row className="justify-content-center">
                 <Col md={7}>
-                    <h4 className="text-center text-2xl text-gray-400 mb-4 mt-3">
-                        Don’t have an account? <strong>Create One</strong>
+                    <h4 className="text-auto text-2xl fs-5 text-gray-400 mb-1 mt-3">
+                        <strong>Sign up</strong><br></br>
                     </h4>
+                    <p className="text-auto text-2xl text-muted  fw-normal mb-4 mt-1">Let's get satrted. It's totally free.</p>
 
                     {generalError && <Alert variant="danger">{generalError}</Alert>}
                     {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
                     <Form onSubmit={handleSubmit} className='max-w-xs mx-auto mb3'>
                         <Form.Group className="mb-3" controlId="formEmail">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label className='text-dark'>Email</Form.Label>
                             <Form.Control
                                 type="email"
-                                placeholder="Enter email"
-                                className="text-dark-50 border border-secondary fw-lighter"
+                                //placeholder="Enter email"
+                                className="text-dark border  border-muted fw-lighter"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                                 isInvalid={!!emailError}
@@ -97,8 +100,9 @@ export default function Page() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
-                                placeholder="Password"
-                                className="text-dark-50 border border-secondary fw-lighter"
+                                color="#DB4437"
+                                //placeholder="Password"
+                                className="text-dark-50  border border-muted fw-lighter"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 isInvalid={!!passwordError}
@@ -111,20 +115,21 @@ export default function Page() {
                         </Form.Group>
 
                         <Button
-                            variant="success"
+                            variant="primary"
                             type="submit"
-                            className="w-100"
+                            className="w-100 fw-bold rounded-pill"
                             disabled={!isFormValid || loading}
                         >
                             {loading ? <Spinner animation="border" size="sm" /> : "Create Account"}
                         </Button>
 
                         <div className="text-center mt-4">
+                            
                             <p className="mb-2 text-muted">Or sign up with</p>
                             <div className="d-flex justify-content-center gap-3 flex-wrap">
                                 <Button
                                     variant="light"
-                                    className="d-flex align-items-center border border-secondary"
+                                    className="d-flex align-items-center border border-secondary text-wrap"
                                     onClick={() => window.location.href = "http://localhost:8000/api/auth/google"}
                                 >
                                     <FaGoogle size={20} color="#DB4437" className="me-2" />

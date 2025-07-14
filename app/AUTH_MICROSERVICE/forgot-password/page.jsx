@@ -59,14 +59,14 @@ export default function Page() {
 
 					<Form onSubmit={handleSubmit}>
 						<Form.Group controlId="formEmail" className="mb-3">
-							<Form.Label>Email address</Form.Label>
+							<Form.Label>Email</Form.Label>
 							<Form.Control
 								type="email"
 								value={email}
-								placeholder="Enter email"
+								//placeholder="Enter email"
 								onChange={(e) => setEmail(e.target.value)}
 								isInvalid={!!emailError}
-								className="text-dark-50 border border-secondary fw-lighter"
+								className="text-dark"
 							/>
 							<Form.Control.Feedback type="invalid">
 								{emailError}
@@ -74,9 +74,9 @@ export default function Page() {
 						</Form.Group>
 
 						<Button
-                            variant="success"
+                            variant="primary"
                             type="submit"
-                            className="w-100"
+                            className="w-100 fw-bold rounded-pill"
                             disabled={!isFormValid || loading}
                         >
                             {loading ? <Spinner animation="border" size="sm" /> : "Send code"}

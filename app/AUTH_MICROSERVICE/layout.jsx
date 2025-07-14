@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
       <body className="d-flex flex-column min-vh-100">
         <AuthProvider>
           <Header />
-          <main className="container p-4 mt-3">
+          <main className="container p-4 mt-3 ">
             {children}
           </main>
           <Footer />

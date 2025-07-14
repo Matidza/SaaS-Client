@@ -75,7 +75,7 @@ export default function Page() {
 
                     <Form onSubmit={handleSubmit} className='max-w-xs mx-auto mb3' >
                         <Form.Group className="mb-3" controlId="formEmail">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>Email</Form.Label>
                             <Form.Control
                                 type="email"
                                 placeholder="Enter email"
@@ -83,7 +83,7 @@ export default function Page() {
                                 onChange={e => setEmail(e.target.value)}
                                 isInvalid={!!emailError}
                                 required
-                                className="text-dark-50 border border-secondary fw-lighter"
+                                className="text-muted"
                             />
                             <Form.Control.Feedback type="invalid">
                                 {emailError}
@@ -94,12 +94,12 @@ export default function Page() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
-                                placeholder="Password"
+                                //placeholder="Password"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 isInvalid={!!passwordError}
                                 required
-                                className="text-dark-50 border border-secondary fw-lighter"
+                                className="text-dark"
                             />
                             <Form.Control.Feedback type="invalid">
                                 {passwordError}
@@ -107,9 +107,9 @@ export default function Page() {
                         </Form.Group>
 
                         <Button
-                            variant="success"
+                            variant="primary"
                             type="submit"
-                            className="w-100"
+                            className="w-100 fw-bold text-white rounded-pill"
                             disabled={!isFormValid || loading}
                         >
                             {loading ? <Spinner animation="border" size="sm" /> : "Sign In"}

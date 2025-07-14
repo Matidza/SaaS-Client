@@ -6,11 +6,6 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
     "/AUTH_MICROSERVICE/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -22,25 +17,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/AUTH_MICROSERVICE/signup/page.js"
     ],
-    "/AUTH_MICROSERVICE/signin/page": [
+    "/AUTH_MICROSERVICE/signup-as-professional/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/AUTH_MICROSERVICE/signin/page.js"
-    ],
-    "/AUTH_MICROSERVICE/change-password/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/AUTH_MICROSERVICE/change-password/page.js"
-    ],
-    "/AUTH_MICROSERVICE/send-verification-code/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/AUTH_MICROSERVICE/send-verification-code/page.js"
-    ],
-    "/AUTH_MICROSERVICE/verify-verification-code/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/AUTH_MICROSERVICE/verify-verification-code/page.js"
+      "static/chunks/app/AUTH_MICROSERVICE/signup-as-professional/page.js"
     ]
   }
 }

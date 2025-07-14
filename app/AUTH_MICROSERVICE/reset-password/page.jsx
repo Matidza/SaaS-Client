@@ -76,12 +76,12 @@ export default function Page() {
 							<Form.Label>Email address</Form.Label>
 							<Form.Control
 								type="email"
-								placeholder="Enter your email"
+								//placeholder="Enter your email"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								isInvalid={!!emailError}
 								required
-								className="text-dark-50 border fw-lighter"
+								className="text-dark"
 							/>
 							<Form.Control.Feedback type="invalid">
 								{emailError}
@@ -92,12 +92,12 @@ export default function Page() {
 							<Form.Label>Verification Code</Form.Label>
 							<Form.Control
 								type="text"
-								placeholder="Enter the code"
+								//placeholder="Enter the code"
 								value={providedCodeValue}
 								onChange={(e) => setprovidedCodeValue(e.target.value)}
 								isInvalid={!!codeError}
 								required
-								className="text-dark-50 border fw-lighter"
+								className="text-dark"
 							/>
 							<Form.Control.Feedback type="invalid">
 								{codeError}
@@ -105,15 +105,15 @@ export default function Page() {
 						</Form.Group>
 
 						<Form.Group controlId="formPassword" className="mb-3">
-							<Form.Label>New Password</Form.Label>
+							<Form.Label>New password</Form.Label>
 							<Form.Control
 								type="password"
-								placeholder="Enter new password"
+								//placeholder="Enter new password"
 								value={newPassword}
 								onChange={(e) => setNewPassword(e.target.value)}
 								isInvalid={!!passwordError}
 								required
-								className="text-dark-50 border fw-lighter"
+								className="text-dark"
 							/>
 							<Form.Control.Feedback type="invalid">
 								{passwordError}
@@ -121,9 +121,9 @@ export default function Page() {
 						</Form.Group>
 
 						<Button
-                            variant="success"
+                            variant="primary"
                             type="submit"
-                            className="w-100"
+                            className="w-100 fw-bold rounded-pill"
                             disabled={!isFormValid || loading}
                         >
                             {loading ? <Spinner animation="border" size="sm" /> : "Reset Password"}
