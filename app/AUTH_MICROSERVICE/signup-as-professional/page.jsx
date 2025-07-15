@@ -129,7 +129,7 @@ export default function Page() {
                                 <Button
                                     variant="light"
                                     className="d-flex align-items-center border border-secondary"
-                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/google"}
+                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/google-mentor"}
                                 >
                                     <FaGoogle size={20} color="#DB4437" className="me-2" />
                                     Google
@@ -138,7 +138,7 @@ export default function Page() {
                                 <Button
                                     variant="light"
                                     className="d-flex align-items-center border border-secondary"
-                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/github"}
+                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/github-mentor"}
                                 >
                                     <FaGithub size={20} color="#333" className="me-2" />
                                     GitHub
