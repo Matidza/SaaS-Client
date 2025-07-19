@@ -30,7 +30,8 @@ export default function Page() {
 
         if (!res.ok) {
           console.log("You need to Login to change your password")
-          router.push('/AUTH_MICROSERVICE/signin'); // redirect to signin if not logged in
+          setTimeout(() => router.push('/AUTH_MICROSERVICE/signin'))
+          //router.push('/AUTH_MICROSERVICE/signin'); // redirect to signin if not logged in
         }
       } catch (err) {
         router.push('/AUTH_MICROSERVICE/signin'); // redirect on error
@@ -92,7 +93,7 @@ export default function Page() {
               <InputGroup>
                 <Form.Control
                   type={showOldPassword ? "text" : "password"}
-                  placeholder="Enter old password"
+                  //placeholder="Enter old password"
                   value={oldPassword}
                   onChange={(e) => setOldPassword(e.target.value)}
                   isInvalid={!!oldPasswordError}
@@ -120,7 +121,7 @@ export default function Page() {
               <InputGroup>
                 <Form.Control
                   type={showNewPassword ? "text" : "password"}
-                  placeholder="Enter new password"
+                  //placeholder="Enter new password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   isInvalid={!!newPasswordError}
@@ -142,9 +143,9 @@ export default function Page() {
             </Form.Group>
 
             <Button
-              variant="success"
+              variant="primary"
               type="submit"
-              className="w-100"
+              className="w-100 fw-bold text-white rounded-pill"
               disabled={!isFormValid || loading}
             >
               {loading ? <Spinner animation="border" size="sm" /> : "Reset Password"}

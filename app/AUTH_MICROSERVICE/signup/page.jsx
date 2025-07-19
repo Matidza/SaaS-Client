@@ -48,9 +48,7 @@ export default function Page() {
                 setEmail('')
                 setPassword('')
 
-                setTimeout(() => {
-                    router.push('/AUTH_MICROSERVICE/signin')
-                }, 2000)
+                
             } else {
                 if (result.field === 'email') setEmailError(result.message)
                 else if (result.field === 'password') setPasswordError(result.message)

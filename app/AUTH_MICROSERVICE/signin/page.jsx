@@ -40,6 +40,7 @@ export default function Page() {
                 
                 localStorage.setItem('accessToken', result.accessToken) 
                 localStorage.setItem('userId', result.userId)
+                localStorage.setItem('user_type', result.user_type)
                
 
                 setSuccessMessage(result.message || "🎉 Logged in successfully!")
@@ -65,9 +66,9 @@ export default function Page() {
         <Container className="mt-3 border border-white shadow-md">
             <Row className="justify-content-center">
                 <Col md={6}>
-                    <h4 className="text-center text-2xl text-gray-400 mb-4 mt-3">
+                    <h4 className="text-center text-2xl text-gray-400 mb-4 mt-3 ">
                         Welcome back! 
-                        <strong>Sign In</strong>
+                        <strong className="px-1">Sign In</strong>
                     </h4>
 
                     {generalError && <Alert variant="danger">{generalError}</Alert>}
@@ -78,7 +79,7 @@ export default function Page() {
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 type="email"
-                                placeholder="Enter email"
+                                //placeholder="Enter email"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                                 isInvalid={!!emailError}

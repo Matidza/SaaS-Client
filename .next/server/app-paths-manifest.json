@@ -1,4 +1,7 @@
 {
-  "/AUTH_MICROSERVICE/signup-as-professional/page": "app/AUTH_MICROSERVICE/signup-as-professional/page.js",
-  "/AUTH_MICROSERVICE/signup/page": "app/AUTH_MICROSERVICE/signup/page.js"
+  "/AUTH_MICROSERVICE/signup/page": "app/AUTH_MICROSERVICE/signup/page.js",
+  "/AUTH_MICROSERVICE/signin/page": "app/AUTH_MICROSERVICE/signin/page.js",
+  "/AUTH_MICROSERVICE/page": "app/AUTH_MICROSERVICE/page.js",
+  "/AUTH_MICROSERVICE/allData/page": "app/AUTH_MICROSERVICE/allData/page.js",
+  "/AUTH_MICROSERVICE/change-password/page": "app/AUTH_MICROSERVICE/change-password/page.js"
 }

@@ -20,9 +20,13 @@ export default function SignOutButton() {
       // Optional: clean up UI state/localStorage
       localStorage.removeItem('accessToken');
       localStorage.removeItem('userId');
+      localStorage.removeItem('user_type');
   
       // Redirect to Sign In
-      router.push('/AUTH_MICROSERVICE/signin');
+      setTimeout(() => {
+        router.push('/AUTH_MICROSERVICE/signin')
+      }, 2000)
+      //router.push('/AUTH_MICROSERVICE/signin');
     } catch (error) {
       console.error('Error during sign out:', error);
       alert('Failed to sign out. Please try again.');
@@ -33,8 +37,8 @@ export default function SignOutButton() {
   
 
   return (/** */
-    <Button variant="danger bg-white text-danger" onClick={handleSignOut} disabled={loading}>
+    <button className=" btn bg-white rounded-pill text-danger border-1 border-danger fw-light" onClick={handleSignOut} disabled={loading}  >
       {loading ? 'Signing out...' : 'Sign Out'}
-    </Button>
+    </button>
   )
 }

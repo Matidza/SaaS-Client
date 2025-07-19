@@ -37,33 +37,30 @@ export default function Header() {
   return (
     <Navbar bg="white" className="shadow-sm w-auto" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} href="/AUTH_MICROSERVICE/" > 
-          <h1 className="fs-2 fw-bolder text-black">initiA<span className="text-primary text-wrap">.</span> </h1>
-        </Navbar.Brand>
+        <Link href="/AUTH_MICROSERVICE/"><h1 className="fs-2 fw-bolder text-black decoration-none">initiA<span className="text-primary text-wrap">.</span> </h1></Link>
+        
 
         <Navbar.Toggle aria-controls="basic-navbar-nav " />
         <Navbar.Collapse id="basic-navbar-nav ">
           <Nav className="ms-auto ">
             {!isAuthenticated ? (
               <>
-
-                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/signin">
-                  <button  className="btn btn-white border rounded-pill   text-black border-1 border-dark fw-light">
+                <Link href="/AUTH_MICROSERVICE/signin" className="px-2"> 
+                  <button  className="btn btn-white btn-sm border rounded-pill text-black border-1 border-dark fw-light">
                     Sign In
                   </button>
-                </Nav.Link>
-
-                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/signup-as-professional" >
-                  <button className="btn btn-dark rounded-pill border-dark border-1 text-white fs-6 fw-light ">
+                </Link>
+                <Link href="/AUTH_MICROSERVICE/signup-as-professional" >
+                  <button className="btn btn-white btn-sm border rounded-pill text-white border-1 bg-dark border-dark fw-light">
                   Join as Professional
                   </button>
-                </Nav.Link>        
+                </Link>        
               </>
             ) : (
               <>
-                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/allData" className="fs-6 fst-normal">All Data</Nav.Link>
-                <Nav.Link as={Link} href="/AUTH_MICROSERVICE/change-password" className="fs-6 fst-normal px-2">Change Password</Nav.Link>
-                <SignOutButton className="danger bg-white text-danger" />
+                <Link href="/AUTH_MICROSERVICE/allData" className="text-sm text-muted fs-5 px-2 fw-normal">data</Link>
+                <Link href="/AUTH_MICROSERVICE/change-password" className="text-sm fs-5 px-2 text-muted fw-normal">change password</Link>
+                <SignOutButton />
               </>
             )}
           </Nav>
