@@ -148,7 +148,7 @@ export default function Page() {
                                 <Button
                                     variant="light"
                                     className="d-flex align-items-center border border-secondary"
-                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/linkedin"}
+                                    onClick={() => window.location.href = "http://localhost:8000/api/auth/linkedin-mentor"}
                                 >
                                     <FaLinkedin size={20} color="#0077B5" className="me-2" />
                                     LinkedIn

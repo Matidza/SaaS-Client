@@ -6,41 +6,31 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
     "/AUTH_MICROSERVICE/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/AUTH_MICROSERVICE/layout.css",
       "static/chunks/app/AUTH_MICROSERVICE/layout.js"
     ],
-    "/AUTH_MICROSERVICE/signin/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/AUTH_MICROSERVICE/signin/page.js"
-    ],
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
     "/AUTH_MICROSERVICE/signup/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/AUTH_MICROSERVICE/signup/page.js"
     ],
-    "/AUTH_MICROSERVICE/allData/page": [
+    "/AUTH_MICROSERVICE/signup-as-professional/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/AUTH_MICROSERVICE/allData/page.js"
+      "static/chunks/app/AUTH_MICROSERVICE/signup-as-professional/page.js"
     ],
-    "/AUTH_MICROSERVICE/change-password/page": [
+    "/AUTH_MICROSERVICE/signin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/AUTH_MICROSERVICE/change-password/page.js"
-    ],
-    "/AUTH_MICROSERVICE/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/AUTH_MICROSERVICE/page.js"
+      "static/chunks/app/AUTH_MICROSERVICE/signin/page.js"
     ]
   }
 }
