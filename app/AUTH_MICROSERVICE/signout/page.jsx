@@ -37,7 +37,7 @@ export default function SignOutButton() {
   
 
   return (/** */
-    <button className=" btn bg-white rounded-pill text-danger border-1 border-danger fw-light" onClick={handleSignOut} disabled={loading}  >
+    <button className="btn btn-white btn-sm border rounded-pill text-danger border-1 bg-clear border-danger fw-light" onClick={handleSignOut} disabled={loading}  >
       {loading ? 'Signing out...' : 'Sign Out'}
     </button>
   )

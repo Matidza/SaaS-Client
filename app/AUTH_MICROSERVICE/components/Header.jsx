@@ -58,8 +58,8 @@ export default function Header() {
               </>
             ) : (
               <>
-                <Link href="/AUTH_MICROSERVICE/allData" className="text-sm text-muted fs-5 px-2 fw-normal">data</Link>
-                <Link href="/AUTH_MICROSERVICE/change-password" className="text-sm fs-5 px-2 text-muted fw-normal">change password</Link>
+                <Link href="/AUTH_MICROSERVICE/allData" className="text-sm text-black fs-5 px-2 fw-light">data</Link>
+                <Link href="/AUTH_MICROSERVICE/change-password" className="text-sm fs-5 px-2 text-muted fw-light">update password</Link>
                 <SignOutButton />
               </>
             )}
