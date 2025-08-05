@@ -1,1 +1,9 @@
 node_modules
+.next
+.git
+.vscode
+*.log
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+.env
