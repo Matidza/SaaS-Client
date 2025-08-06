@@ -21,6 +21,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/AUTH_MICROSERVICE/signup/page.js"
+    ],
+    "/AUTH_MICROSERVICE/signin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/AUTH_MICROSERVICE/signin/page.js"
     ]
   }
 }
