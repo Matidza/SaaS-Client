@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import { Box, Button, Flex, Grid, Heading, Text, VStack, HStack, Tag } from '@chakra-ui/react';
 
