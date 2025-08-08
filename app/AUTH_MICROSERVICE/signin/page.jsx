@@ -41,10 +41,16 @@ export default function Page() {
                 localStorage.setItem('accessToken', result.accessToken) 
                 localStorage.setItem('userId', result.userId)
                 localStorage.setItem('user_type', result.user_type)
-               
-
+                console.log(result)
                 setSuccessMessage(result.message || "🎉 Logged in successfully!")
-                setTimeout(() => router.push(''), 2000)
+                // redirect to role-based dashboards
+                if (result.user_type === "mentee") {
+                    setTimeout(() => router.push('/dashboard/mentee/my-dashboard'), 1000)
+                }
+                if (result.user_type === "mentor") {
+                    setTimeout(() => router.push('/dashboard/mentor/my-dashboard'), 1000)
+                }
+                
             } else {
                 if (result.field === 'email') {
                     setEmailError(result.message)

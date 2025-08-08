@@ -41,16 +41,12 @@ export default function Page() {
                 localStorage.setItem('userId', result.user)
                 localStorage.setItem('user_type', result.user_type) 
                 
-
-
                 setSuccessMessage(result.message)
-
+                 setTimeout(() => router.push('/AUTH_MICROSERVICE/signin'), 1000)
                 // ✅ Clear input fields after success
                 setEmail('')
                 setPassword('')
-                
-
-                
+                                
             } else {
                 if (result.field === 'email') setEmailError(result.message)
                 else if (result.field === 'password') setPasswordError(result.message)

@@ -24,8 +24,8 @@ export default function SignOutButton() {
   
       // Redirect to Sign In
       setTimeout(() => {
-        router.push('/AUTH_MICROSERVICE/signin')
-      }, 2000)
+        router.push('/dashboard/home')
+      }, 1000)
       //router.push('/AUTH_MICROSERVICE/signin');
     } catch (error) {
       console.error('Error during sign out:', error);

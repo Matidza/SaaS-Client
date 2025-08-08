@@ -37,7 +37,7 @@ export default function Header() {
   return (
     <Navbar bg="white" className="shadow-sm w-auto" expand="lg">
       <Container>
-        <Link href="/AUTH_MICROSERVICE/"><h1 className="fs-2 fw-bolder text-black decoration-none">initiA<span className="text-primary text-wrap">.</span> </h1></Link>
+        <Link href="/AUTH_MICROSERVICE/"><h1 className="fs-2 fw-bolder text-black decoration-none">Project:<span className="text-primary text-wrap">17</span> </h1></Link>
         
 
         <Navbar.Toggle aria-controls="basic-navbar-nav " />
