@@ -1,19 +1,26 @@
-// app/layout.jsx
+// app/dashboard/layout.jsx
+// Import the client wrapper
+import DashboardProviderWrapper from './provider-wrapper'; // ⬅️ create this file next
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Providers } from './providers';
 
 export const metadata = {
-  title: 'My App',
-  description: 'Description here',
+  title: 'Dashboard | SaaS Client',
+  description: 'User dashboard area',
 };
 
-export default function RootLayout({ children }) {
+export default function DashboardLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        {/* Wrap with a Client Component */}
+        <DashboardProviderWrapper>
+          {children}
+        </DashboardProviderWrapper>
       </body>
     </html>
   );
 }
+
+
 
