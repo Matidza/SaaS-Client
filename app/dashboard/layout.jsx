@@ -1,8 +1,5 @@
-// app/dashboard/layout.jsx
-// Import the client wrapper
-import DashboardProviderWrapper from './provider-wrapper'; // ⬅️ create this file next
+import DashboardShell from './components/DashboardShell';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 export const metadata = {
   title: 'Dashboard | SaaS Client',
@@ -13,14 +10,14 @@ export default function DashboardLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {/* Wrap with a Client Component */}
-        <DashboardProviderWrapper>
+        <DashboardShell>
           {children}
-        </DashboardProviderWrapper>
+        </DashboardShell>
       </body>
     </html>
   );
 }
+
 
 
 
