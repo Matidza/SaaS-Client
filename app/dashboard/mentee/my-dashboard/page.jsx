@@ -1,74 +1,44 @@
+
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Card, Badge } from 'react-bootstrap';
 
 export default function InterviewPrepLayout() {
   const professionals = [
-    {
-      name: 'Sarah Johnson',
-      title: 'Senior Software Engineer at Google',
-      rating: '4.9 (127 reviews)',
-      tags: ['Software Engineering', 'System Design'],
-      price: '$45/hour',
-    },
-    {
-      name: 'Mike Chen',
-      title: 'Investment Banking VP at Goldman Sachs',
-      rating: '4.8 (89 reviews)',
-      tags: ['Investment Banking', 'Finance'],
-      price: '$60/hour',
-    },
-    {
-      name: 'Alex Rodriguez',
-      title: 'Marketing Director at Netflix',
-      rating: '4.7 (56 reviews)',
-      tags: ['Marketing', 'Strategy'],
-      price: '$50/hour',
-    },
-    {
-      name: 'Emma Williams',
-      title: 'Senior Consultant at McKinsey & Company',
-      rating: '4.9 (143 reviews)',
-      tags: ['Consulting', 'Case Studies'],
-      price: '$70/hour',
-    },
-    {
-      name: 'David Kim',
-      title: 'Product Manager at Meta',
-      rating: '4.8 (92 reviews)',
-      tags: ['Product Management', 'UX Design'],
-      price: '$55/hour',
-    },
-    {
-      name: 'Lisa Thompson',
-      title: 'Data Scientist at Microsoft',
-      rating: '4.9 (78 reviews)',
-      tags: ['Data Science', 'Analytics'],
-      price: '$50/hour',
-    },
+    { name: 'Sarah Johnson', title: 'Senior Software Engineer at Google', rating: '4.9 (127 reviews)', tags: ['Software Engineering', 'System Design'], price: '$45/hour' },
+    { name: 'Mike Chen', title: 'Investment Banking VP at Goldman Sachs', rating: '4.8 (89 reviews)', tags: ['Investment Banking', 'Finance'], price: '$60/hour' },
+    { name: 'Alex Rodriguez', title: 'Marketing Director at Netflix', rating: '4.7 (56 reviews)', tags: ['Marketing', 'Strategy'], price: '$50/hour' },
+    { name: 'Emma Williams', title: 'Senior Consultant at McKinsey & Company', rating: '4.9 (143 reviews)', tags: ['Consulting', 'Case Studies'], price: '$70/hour' },
+    { name: 'David Kim', title: 'Product Manager at Meta', rating: '4.8 (92 reviews)', tags: ['Product Management', 'UX Design'], price: '$55/hour' },
+    { name: 'Lisa Thompson', title: 'Data Scientist at Microsoft', rating: '4.9 (78 reviews)', tags: ['Data Science', 'Analytics'], price: '$50/hour' },
   ];
 
-  // Map each tag to a badge color
-  const tagColors = {
-    'Software Engineering': 'primary',
-    'System Design': 'success',
-    'Investment Banking': 'warning',
-    'Finance': 'info',
-    'Marketing': 'danger',
-    'Strategy': 'secondary',
-    'Consulting': 'success',
-    'Case Studies': 'info',
-    'Product Management': 'primary',
-    'UX Design': 'danger',
-    'Data Science': 'info',
-    'Analytics': 'warning',
+  // Available Bootstrap badge colors
+  const colorOptions = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+
+  const [tagColors, setTagColors] = useState({});
+
+  // Function to randomize colors for all tags
+  const randomizeColors = () => {
+    const newColors = {};
+    professionals.forEach(pro => {
+      pro.tags.forEach(tag => {
+        newColors[tag] = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+      });
+    });
+    setTagColors(newColors);
   };
+
+  // Run on mount + every 1 minute
+  useEffect(() => {
+    randomizeColors();
+    const interval = setInterval(randomizeColors, 60000); // 60,000 ms = 1 minute
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Container className="py-5">
-
-      {/* Header Section */}
       <div className="text-center mb-5">
         <h1 className="mb-3">Practice Interviews with Industry Professionals</h1>
         <p className="text-muted mb-4">
@@ -78,26 +48,6 @@ export default function InterviewPrepLayout() {
         <Button variant="outline-secondary">How it Works</Button>
       </div>
 
-      {/* Steps Section */}
-      <Row className="text-center mb-5">
-        {[
-          { icon: '👤', title: 'Choose Your Professional', desc: 'Browse profiles and select an expert in your field' },
-          { icon: '📅', title: 'Schedule Your Session', desc: 'Book a convenient time for your mock interview' },
-          { icon: '🎥', title: 'Practice via Zoom', desc: 'Get real-time feedback and improve your skills' }
-        ].map((item, idx) => (
-          <Col md={4} key={idx} className="mb-4">
-            <Card className="h-100 text-center">
-              <Card.Body>
-                <h1>{item.icon}</h1>
-                <h5>{item.title}</h5>
-                <p>{item.desc}</p>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-
-      {/* Professionals Section */}
       <Row className="align-items-center mb-4">
         <Col><h3>Top Professionals</h3></Col>
         <Col className="text-end">
@@ -114,7 +64,7 @@ export default function InterviewPrepLayout() {
                 <Card.Subtitle className="mb-2 text-muted">{pro.title}</Card.Subtitle>
                 <Card.Text className="text-warning fw-medium">{pro.rating}</Card.Text>
 
-                {/* Tags with unique colors */}
+                {/* Dynamic color-changing tags */}
                 <div className="mb-2">
                   {pro.tags.map((tag, i) => (
                     <Badge
@@ -149,11 +99,9 @@ export default function InterviewPrepLayout() {
         ))}
       </Row>
 
-      {/* View All Button */}
       <div className="text-center mt-5">
         <Button variant="outline-secondary">View All Professionals</Button>
       </div>
     </Container>
   );
 }
-
