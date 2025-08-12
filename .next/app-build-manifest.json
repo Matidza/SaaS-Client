@@ -31,6 +31,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/mentee/my-dashboard/page.js"
+    ],
+    "/dashboard/mentor/my-dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/mentor/my-dashboard/page.js"
     ]
   }
 }

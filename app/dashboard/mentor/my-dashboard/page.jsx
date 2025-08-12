@@ -33,51 +33,60 @@ export default function ProfessionalDashboard() {
 
       {/* Stats Cards */}
       <Row className="mb-4">
-        <Col md={3}>
-          <Card className="text-center shadow-sm">
-            <Card.Body>
-              <div className="mb-3 text-primary d-inline-block p-2 rounded-circle bg-light">
-                <CalendarEvent size={24} />
-              </div>
-              <Card.Subtitle className="mb-1 text-muted">Total Sessions</Card.Subtitle>
-              <Card.Title>127</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={3}>
-          <Card className="text-center shadow-sm">
-            <Card.Body>
-              <div className="mb-3 text-primary d-inline-block p-2 rounded-circle bg-light">
-                <CurrencyDollar size={24} />
-              </div>
-              <Card.Subtitle className="mb-1 text-muted">Total Earnings</Card.Subtitle>
-              <Card.Title>$3,450</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={3}>
-          <Card className="text-center shadow-sm">
-            <Card.Body>
-              <div className="mb-3 text-primary d-inline-block p-2 rounded-circle bg-light">
-                <StarFill size={24} />
-              </div>
-              <Card.Subtitle className="mb-1 text-muted">Average Rating</Card.Subtitle>
-              <Card.Title>4.8</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={3}>
-          <Card className="text-center shadow-sm">
-            <Card.Body>
-              <div className="mb-3 text-primary d-inline-block p-2 rounded-circle bg-light">
-                <ArrowUp size={24} />
-              </div>
-              <Card.Subtitle className="mb-1 text-muted">This Month</Card.Subtitle>
-              <Card.Title>24</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+  <Col md={3}>
+    <Card className="shadow-sm">
+      <Card.Body className="d-flex justify-content-between align-items-center">
+        <div className="text-start">
+          <Card.Subtitle className="mb-1 text-muted">Total Sessions</Card.Subtitle>
+          <Card.Title>127</Card.Title>
+        </div>
+        <div className="text-primary d-inline-block p-2 rounded-circle bg-light">
+          <CalendarEvent size={24} />
+        </div>
+      </Card.Body>
+    </Card>
+  </Col>
+  <Col md={3}>
+    <Card className="shadow-sm">
+      <Card.Body className="d-flex justify-content-between align-items-center">
+        <div className="text-start">
+          <Card.Subtitle className="mb-1 text-muted">Total Earnings</Card.Subtitle>
+          <Card.Title>$3,450</Card.Title>
+        </div>
+        <div className="text-primary d-inline-block p-2 rounded-circle bg-light">
+          <CurrencyDollar size={24} />
+        </div>
+      </Card.Body>
+    </Card>
+  </Col>
+  <Col md={3}>
+    <Card className="shadow-sm">
+      <Card.Body className="d-flex justify-content-between align-items-center">
+        <div className="text-start">
+          <Card.Subtitle className="mb-1 text-muted">Average Rating</Card.Subtitle>
+          <Card.Title>4.8</Card.Title>
+        </div>
+        <div className="text-primary d-inline-block p-2 rounded-circle bg-light">
+          <StarFill size={24} />
+        </div>
+      </Card.Body>
+    </Card>
+  </Col>
+  <Col md={3}>
+    <Card className="shadow-sm">
+      <Card.Body className="d-flex justify-content-between align-items-center">
+        <div className="text-start">
+          <Card.Subtitle className="mb-1 text-muted">This Month</Card.Subtitle>
+          <Card.Title>24</Card.Title>
+        </div>
+        <div className="text-primary d-inline-block p-2 rounded-circle bg-light">
+          <ArrowUp size={24} />
+        </div>
+      </Card.Body>
+    </Card>
+  </Col>
+</Row>
+
 
       {/* Main Grid */}
       <Row>
