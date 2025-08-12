@@ -52,11 +52,12 @@ export default function ProfessionalDashboard() {
       <Card.Body className="d-flex justify-content-between align-items-center">
         <div className="text-start">
           <Card.Subtitle className="mb-1 text-muted">Total Earnings</Card.Subtitle>
-          <Card.Title>$3,450</Card.Title>
+          <Card.Title>R3,450.00</Card.Title>
         </div>
-        <div className="text-success d-inline-block p-2 rounded-circle bg-success-light">
-          <CurrencyDollar size={24} />
-        </div>
+        <div className="text-success d-inline-block p-2 rounded-circle bg-success-light" style={{ fontSize: 24, fontWeight: 'bold' }}>
+  R
+</div>
+
       </Card.Body>
     </Card>
   </Col>
