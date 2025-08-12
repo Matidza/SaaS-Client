@@ -32,7 +32,8 @@ export default function ProfessionalDashboard() {
       </Row>
 
       {/* Stats Cards */}
-      <Row className="mb-4">
+      
+	<Row className="mb-4">
   <Col md={3}>
     <Card className="shadow-sm">
       <Card.Body className="d-flex justify-content-between align-items-center">
@@ -40,7 +41,7 @@ export default function ProfessionalDashboard() {
           <Card.Subtitle className="mb-1 text-muted">Total Sessions</Card.Subtitle>
           <Card.Title>127</Card.Title>
         </div>
-        <div className="text-primary d-inline-block p-2 rounded-circle bg-light">
+        <div className="text-primary d-inline-block p-2 rounded-circle bg-primary-light">
           <CalendarEvent size={24} />
         </div>
       </Card.Body>
@@ -53,7 +54,7 @@ export default function ProfessionalDashboard() {
           <Card.Subtitle className="mb-1 text-muted">Total Earnings</Card.Subtitle>
           <Card.Title>$3,450</Card.Title>
         </div>
-        <div className="text-primary d-inline-block p-2 rounded-circle bg-light">
+        <div className="text-success d-inline-block p-2 rounded-circle bg-success-light">
           <CurrencyDollar size={24} />
         </div>
       </Card.Body>
@@ -66,7 +67,7 @@ export default function ProfessionalDashboard() {
           <Card.Subtitle className="mb-1 text-muted">Average Rating</Card.Subtitle>
           <Card.Title>4.8</Card.Title>
         </div>
-        <div className="text-primary d-inline-block p-2 rounded-circle bg-light">
+        <div className="text-warning d-inline-block p-2 rounded-circle bg-warning-light">
           <StarFill size={24} />
         </div>
       </Card.Body>
@@ -79,7 +80,7 @@ export default function ProfessionalDashboard() {
           <Card.Subtitle className="mb-1 text-muted">This Month</Card.Subtitle>
           <Card.Title>24</Card.Title>
         </div>
-        <div className="text-primary d-inline-block p-2 rounded-circle bg-light">
+        <div className="text-info d-inline-block p-2 rounded-circle bg-info-light">
           <ArrowUp size={24} />
         </div>
       </Card.Body>
