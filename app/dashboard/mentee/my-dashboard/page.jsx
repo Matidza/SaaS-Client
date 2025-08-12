@@ -33,7 +33,7 @@ export default function InterviewPrepLayout() {
   // Run on mount + every 1 minute
   useEffect(() => {
     randomizeColors();
-    const interval = setInterval(randomizeColors, 60000); // 60,000 ms = 1 minute
+    const interval = setInterval(randomizeColors, 90000); // 60,000 ms = 1 minute
     return () => clearInterval(interval);
   }, []);
 
@@ -91,8 +91,12 @@ export default function InterviewPrepLayout() {
                   Aspernatur assumenda debitis aut est itaque corporis magnam voluptatibus aperiam pariatur.
                 </span>
 
-                <p className="fw-bold mt-2">{pro.price}</p>
-                <Button variant="primary" className="w-auto rounded-3">Book Session</Button>
+                {/* Price & Button on same row */}
+<div className="d-flex justify-content-between align-items-center mt-2">
+  <p className="fw-bold mb-0">{pro.price}</p>
+  <Button variant="primary" className="w-auto rounded-3">Book Session</Button>
+</div>
+
               </Card.Body>
             </Card>
           </Col>
