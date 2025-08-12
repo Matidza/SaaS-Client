@@ -30,10 +30,10 @@ export default function InterviewPrepLayout() {
     setTagColors(newColors);
   };
 
-  // Run on mount + every 1 minute
+  // Run on mount + every 5 minute
   useEffect(() => {
     randomizeColors();
-    const interval = setInterval(randomizeColors, 90000); // 60,000 ms = 1 minute
+    const interval = setInterval(randomizeColors, 300000); // 300,000 ms = 5 minute
     return () => clearInterval(interval);
   }, []);
 
