@@ -7,7 +7,7 @@ const primaryBlue = '#0d6efd'; // example color
 
 export default function NavBar() {
   return (
-    <Navbar bg="white" expand="lg" className="shadow-sm px-4 py-3" style={{ fontWeight: '600' }}>
+    <Navbar bg="white" expand="lg" className="w-auto shadow-sm px-4 py-3" style={{ fontWeight: '600' }}>
       <Container fluid>
         <Navbar.Brand href="#" className="d-flex align-items-center gap-2">
           <svg
@@ -21,8 +21,8 @@ export default function NavBar() {
             <path d="M3 3h18v18H3z" />
           </svg>
           <div>
-            <div style={{ color: primaryBlue, fontSize: '1.3rem' }}>InterviewPrep</div>
-            <small style={{ fontWeight: '400', fontSize: '0.8rem', color: '#6b7280' }}>
+            <div style={{ color: 'black', fontSize: '1.4rem' }}>InterviewPrep</div>
+            <small style={{ fontWeight: '400', fontSize: '0.8rem', color: '#545860ff' }}>
               Professional Mock Interviews
             </small>
           </div>
@@ -35,7 +35,7 @@ export default function NavBar() {
             <InputGroup>
               <Form.Control
                 type="search"
-                placeholder="Search professionals, job titles, or companies..."
+                placeholder="Search professionals, job titles..."
                 aria-label="Search"
                 className="rounded-pill"
                 style={{ paddingLeft: '1.5rem' }}
@@ -45,14 +45,14 @@ export default function NavBar() {
 
           <Nav className="ms-auto align-items-center gap-2">
             <Button
-              variant="outline-primary"
-              style={{ borderColor: primaryBlue, color: primaryBlue, fontWeight: '600' }}
+              variant="outline-white-500"
+              style={{ borderColor: 'black', color: 'black', fontWeight: '600', borderRadius: 20 }}
             >
               Sign In
             </Button>
             <Button
-              variant="primary"
-              style={{ backgroundColor: primaryBlue, borderColor: primaryBlue, fontWeight: '600' }}
+              variant=""
+              style={{ backgroundColor: 'black', borderColor: 'black', fontWeight: '600', color:'white', borderRadius: 25 }}
             >
               Join as Professional
             </Button>

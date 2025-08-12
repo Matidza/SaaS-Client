@@ -1,4 +1,7 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/AUTH_MICROSERVICE/signup/page": "app/AUTH_MICROSERVICE/signup/page.js",
   "/dashboard/mentor/my-dashboard/page": "app/dashboard/mentor/my-dashboard/page.js",
-  "/dashboard/home/page": "app/dashboard/home/page.js"
+  "/dashboard/mentee/my-dashboard/page": "app/dashboard/mentee/my-dashboard/page.js",
+  "/AUTH_MICROSERVICE/signin/page": "app/AUTH_MICROSERVICE/signin/page.js"
 }
