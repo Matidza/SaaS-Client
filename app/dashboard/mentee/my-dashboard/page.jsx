@@ -49,18 +49,39 @@ export default function InterviewPrepLayout() {
     },
   ];
 
+  // Map each tag to a badge color
+  const tagColors = {
+    'Software Engineering': 'primary',
+    'System Design': 'success',
+    'Investment Banking': 'warning',
+    'Finance': 'info',
+    'Marketing': 'danger',
+    'Strategy': 'secondary',
+    'Consulting': 'success',
+    'Case Studies': 'info',
+    'Product Management': 'primary',
+    'UX Design': 'danger',
+    'Data Science': 'info',
+    'Analytics': 'warning',
+  };
+
   return (
     <Container className="py-5">
-      
+
+      {/* Header Section */}
       <div className="text-center mb-5">
         <h1 className="mb-3">Practice Interviews with Industry Professionals</h1>
-        <p className="text-muted mb-4">Connect with experienced professionals for personalized mock interviews and career guidance</p>
+        <p className="text-muted mb-4">
+          Connect with experienced professionals for personalized mock interviews and career guidance
+        </p>
         <Button variant="primary" className="me-2">Find Professionals</Button>
         <Button variant="outline-secondary">How it Works</Button>
       </div>
 
+      {/* Steps Section */}
       <Row className="text-center mb-5">
-        {[{ icon: '👤', title: 'Choose Your Professional', desc: 'Browse profiles and select an expert in your field' },
+        {[
+          { icon: '👤', title: 'Choose Your Professional', desc: 'Browse profiles and select an expert in your field' },
           { icon: '📅', title: 'Schedule Your Session', desc: 'Book a convenient time for your mock interview' },
           { icon: '🎥', title: 'Practice via Zoom', desc: 'Get real-time feedback and improve your skills' }
         ].map((item, idx) => (
@@ -76,6 +97,7 @@ export default function InterviewPrepLayout() {
         ))}
       </Row>
 
+      {/* Professionals Section */}
       <Row className="align-items-center mb-4">
         <Col><h3>Top Professionals</h3></Col>
         <Col className="text-end">
@@ -91,25 +113,47 @@ export default function InterviewPrepLayout() {
                 <Card.Title>{pro.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{pro.title}</Card.Subtitle>
                 <Card.Text className="text-warning fw-medium">{pro.rating}</Card.Text>
+
+                {/* Tags with unique colors */}
                 <div className="mb-2">
                   {pro.tags.map((tag, i) => (
-                    <Badge bg="secondary" key={i} className="me-1">{tag}</Badge>
+                    <Badge
+                      bg={tagColors[tag] || 'secondary'}
+                      key={i}
+                      className="me-1"
+                    >
+                      {tag}
+                    </Badge>
                   ))}
                 </div>
-                <span className='text-wrap'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aperiam magnam consequatur, ea rerum veniam expedita ipsum recusandae ex? Aspernatur assumenda debitis aut est itaque corporis magnam voluptatibus aperiam pariatur.
+
+                {/* Multi-line truncation */}
+                <span
+                  style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                  Voluptatum aperiam magnam consequatur, ea rerum veniam expedita ipsum recusandae ex? 
+                  Aspernatur assumenda debitis aut est itaque corporis magnam voluptatibus aperiam pariatur.
                 </span>
-                <p className="fw-bold">{pro.price}</p>
-                <Button variant="primary" className="w-auto rounded-3 justify-content-end">Book Session</Button>
+
+                <p className="fw-bold mt-2">{pro.price}</p>
+                <Button variant="primary" className="w-auto rounded-3">Book Session</Button>
               </Card.Body>
             </Card>
           </Col>
         ))}
       </Row>
 
+      {/* View All Button */}
       <div className="text-center mt-5">
         <Button variant="outline-secondary">View All Professionals</Button>
       </div>
     </Container>
   );
 }
+
