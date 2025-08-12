@@ -1,14 +1,16 @@
+
 'use client';
 
 import React from 'react';
 import { Container, Navbar, Nav, Form, InputGroup, Button } from 'react-bootstrap';
 
-const primaryBlue = '#0d6efd'; // example color
+const primaryBlue = '#0d6efd';
 
 export default function NavBar() {
   return (
-    <Navbar bg="white" expand="lg" className="w-auto shadow-sm px-4 py-3" style={{ fontWeight: '600' }}>
+    <Navbar bg="white" expand="lg" className="shadow-sm px-4 py-3" style={{ fontWeight: '600' }}>
       <Container fluid>
+        {/* Brand */}
         <Navbar.Brand href="#" className="d-flex align-items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,10 +30,13 @@ export default function NavBar() {
           </div>
         </Navbar.Brand>
 
+        {/* Mobile Toggle */}
         <Navbar.Toggle aria-controls="navbar-nav" />
 
+        {/* Collapsible Content */}
         <Navbar.Collapse id="navbar-nav">
-          <Form className="mx-auto" style={{ width: '40rem' }}>
+          {/* Search Bar */}
+          <Form className="mx-lg-auto my-2 my-lg-0 w-50 w-lg-50">
             <InputGroup>
               <Form.Control
                 type="search"
@@ -43,19 +48,36 @@ export default function NavBar() {
             </InputGroup>
           </Form>
 
-          <Nav className="ms-auto align-items-center gap-2">
+          {/* Buttons */}
+          <Nav className="ms-lg-auto mt-3 mt-lg-0 align-items-lg-center gap-2 flex-column flex-lg-row">
             <Button
               variant="outline-white-500"
-              style={{ borderColor: 'black', color: 'black', fontWeight: '600', borderRadius: 20 }}
+              style={{
+                borderColor: 'black',
+                color: 'black',
+                fontWeight: '600',
+                borderRadius: 20,
+                width: '100%',
+                maxWidth: '150px'
+              }}
             >
               Sign In
             </Button>
             <Button
-              variant=""
-              style={{ backgroundColor: 'black', borderColor: 'black', fontWeight: '600', color:'white', borderRadius: 25 }}
-            >
-              Join as Professional
-            </Button>
+  style={{
+    backgroundColor: 'black',
+    borderColor: 'black',
+    fontWeight: '600',
+    color: 'white',
+    borderRadius: 25,
+    width: '100%',
+    maxWidth: '300px',
+    whiteSpace: 'nowrap',     // prevent wrapping
+  }}
+>
+  Join as Professional
+</Button>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
