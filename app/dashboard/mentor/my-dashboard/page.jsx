@@ -17,14 +17,18 @@ import {
   ArrowUp,
 } from 'react-bootstrap-icons';
 
+const myUser = async localStorage.getItem('userId', 'user_type')
+
 export default function ProfessionalDashboard() {
+const user = myUser;
   return (
     <Container className="py-4">
       {/* Header */}
       <Row className="align-items-center mb-4">
         <Col>
           <h2 className="d-inline-block me-2">Professional Dashboard</h2>
-          <Badge bg="success">Active</Badge>
+          <Badge bg="success">Active</Badge> 
+	  <p>user.user_type</p>
         </Col>
         <Col className="text-end text-muted">
           Next session: 2:30 PM
