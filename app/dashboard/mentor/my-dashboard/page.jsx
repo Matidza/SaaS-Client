@@ -54,7 +54,7 @@ export default function ProfessionalDashboard() {
           <Card.Subtitle className="mb-1 text-muted">Total Earnings</Card.Subtitle>
           <Card.Title>R3,450.00</Card.Title>
         </div>
-        <div className="text-success d-inline-block p-2 rounded-circle bg-success-light" style={{ fontSize: 24, fontWeight: 'bold' }}>
+        <div className="text-success d-inline-block p-2 rounded-circle bg-success-light" style={{ fontSize: 22, fontWeight: 'bold' }}>
   R
 </div>
 
