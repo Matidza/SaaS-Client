@@ -2,5 +2,5 @@
 import { redirect } from "next/navigation"
 
 export default  function Page() {
-    redirect('/AUTH_MICROSERVICE/signup')
+    redirect('/dashboard/mentee/my-dashboard')
 }
