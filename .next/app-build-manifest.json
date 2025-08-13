@@ -41,6 +41,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/AUTH_MICROSERVICE/signup-as-professional/page.js"
+    ],
+    "/dashboard/mentor/my-dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/mentor/my-dashboard/page.js"
     ]
   }
 }

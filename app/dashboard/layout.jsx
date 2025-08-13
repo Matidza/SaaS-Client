@@ -1,5 +1,7 @@
 import DashboardShell from './components/DashboardShell';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './navbar/NavBar';
+
 
 export const metadata = {
   title: 'Dashboard | SaaS Client',
@@ -10,9 +12,10 @@ export default function DashboardLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <DashboardShell>
+        
+	  <NavBar />
           {children}
-        </DashboardShell>
+        
       </body>
     </html>
   );
