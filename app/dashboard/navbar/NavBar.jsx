@@ -1,14 +1,19 @@
-
 'use client';
 
 import React from 'react';
 import { Container, Navbar, Nav, Form, InputGroup, Button } from 'react-bootstrap';
+import Link from 'next/link';
 
 const primaryBlue = '#0d6efd';
 
 export default function NavBar() {
   return (
-    <Navbar bg="white" expand="lg" className="shadow-sm px-4 py-3" style={{ fontWeight: '600' }}>
+    <Navbar
+      bg="white"
+      expand="lg"
+      className="shadow-sm px-4 py-3"
+      style={{ fontWeight: '600' }}
+    >
       <Container fluid>
         {/* Brand */}
         <Navbar.Brand href="#" className="d-flex align-items-center gap-2">
@@ -24,7 +29,13 @@ export default function NavBar() {
           </svg>
           <div>
             <div style={{ color: 'black', fontSize: '1.4rem' }}>InterviewPrep</div>
-            <small style={{ fontWeight: '400', fontSize: '0.8rem', color: '#545860ff' }}>
+            <small
+              style={{
+                fontWeight: '400',
+                fontSize: '0.8rem',
+                color: '#545860ff',
+              }}
+            >
               Professional Mock Interviews
             </small>
           </div>
@@ -50,6 +61,7 @@ export default function NavBar() {
 
           {/* Buttons */}
           <Nav className="ms-lg-auto mt-3 mt-lg-0 align-items-lg-center gap-2 flex-column flex-lg-row">
+            {/* Sign In Button */}
             <Button
               variant="outline-white-500"
               style={{
@@ -58,29 +70,51 @@ export default function NavBar() {
                 fontWeight: '600',
                 borderRadius: 20,
                 width: '100%',
-                maxWidth: '150px'
+                maxWidth: '150px',
               }}
             >
-              Sign In
+              <Link
+                href="/AUTH_MICROSERVICE/signin"
+                style={{
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  fontWeight: '600',
+                }}
+              >
+                Sign In
+              </Link>
             </Button>
-            <Button
-  style={{
-    backgroundColor: 'black',
-    borderColor: 'black',
-    fontWeight: '600',
-    color: 'white',
-    borderRadius: 25,
-    width: '100%',
-    maxWidth: '300px',
-    whiteSpace: 'nowrap',     // prevent wrapping
-  }}
->
-  Join as Professional
-</Button>
 
+            {/* Join as Professional Button */}
+            <Button
+              style={{
+                backgroundColor: 'black',
+                borderColor: 'black',
+                fontWeight: '600',
+                color: 'white',
+                borderRadius: 25,
+                width: '100%',
+                maxWidth: '300px',
+                whiteSpace: 'nowrap', // prevent wrapping
+              }}
+            >
+
+		<Link
+                href="/AUTH_MICROSERVICE/signup-as-professional"
+                style={{
+                  textDecoration: 'none',
+                  color: 'white',
+                  fontWeight: '600',
+                }}
+              >
+                Join as Professional
+              </Link>
+              
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
+
