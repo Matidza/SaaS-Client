@@ -41,15 +41,17 @@ export default function Page() {
                 localStorage.setItem('accessToken', result.accessToken) 
                 localStorage.setItem('userId', result.userId)
                 localStorage.setItem('user_type', result.user_type)
+                //localStorage.setItem('email', result.email)
                 console.log(result)
+                
 
                 setSuccessMessage(result.message || "🎉 Logged in successfully!")
                 // redirect to role-based dashboards
                 if (result.user_type === "mentee") {
-                    setTimeout(() => router.push('/dashboard/mentee/my-dashboard'), 0000)
+                    setTimeout(() => router.push('/dashboard/mentee/my-dashboard'),)
                 }
                 if (result.user_type === "mentor") {
-                    setTimeout(() => router.push('/dashboard/mentor/my-dashboard'), 0000)
+                    setTimeout(() => router.push('/dashboard/mentor/my-dashboard'),)
                 }
                 
             } else {

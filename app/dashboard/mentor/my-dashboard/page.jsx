@@ -17,18 +17,19 @@ import {
   ArrowUp,
 } from 'react-bootstrap-icons';
 
-const myUser = async localStorage.getItem('userId', 'user_type')
 
+var user_type = localStorage.getItem('user_type')
+var userID = localStorage.getItem('userId')
 export default function ProfessionalDashboard() {
-const user = myUser;
   return (
     <Container className="py-4">
-      {/* Header */}
+      
       <Row className="align-items-center mb-4">
         <Col>
           <h2 className="d-inline-block me-2">Professional Dashboard</h2>
           <Badge bg="success">Active</Badge> 
-	  <p>user.user_type</p>
+	        <p>{user_type}</p>
+          <p>{userID}</p>
         </Col>
         <Col className="text-end text-muted">
           Next session: 2:30 PM
@@ -39,7 +40,7 @@ const user = myUser;
       
 	<Row className="mb-4">
   <Col md={3}>
-    <Card className="shadow-sm">
+    <Card className="shadow-sm border-primary">
       <Card.Body className="d-flex justify-content-between align-items-center">
         <div className="text-start">
           <Card.Subtitle className="mb-1 text-muted">Total Sessions</Card.Subtitle>
@@ -52,7 +53,7 @@ const user = myUser;
     </Card>
   </Col>
   <Col md={3}>
-    <Card className="shadow-sm">
+    <Card className="shadow-sm border-success">
       <Card.Body className="d-flex justify-content-between align-items-center">
         <div className="text-start">
           <Card.Subtitle className="mb-1 text-muted">Total Earnings</Card.Subtitle>
@@ -66,7 +67,7 @@ const user = myUser;
     </Card>
   </Col>
   <Col md={3}>
-    <Card className="shadow-sm">
+    <Card className="shadow-sm border-warning">
       <Card.Body className="d-flex justify-content-between align-items-center">
         <div className="text-start">
           <Card.Subtitle className="mb-1 text-muted">Average Rating</Card.Subtitle>
@@ -79,7 +80,7 @@ const user = myUser;
     </Card>
   </Col>
   <Col md={3}>
-    <Card className="shadow-sm">
+    <Card className="shadow-sm border-info">
       <Card.Body className="d-flex justify-content-between align-items-center">
         <div className="text-start">
           <Card.Subtitle className="mb-1 text-muted">This Month</Card.Subtitle>

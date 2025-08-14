@@ -12,10 +12,8 @@ export default function DashboardLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        
-	  <NavBar />
-          {children}
-        
+        <NavBar />
+        {children}
       </body>
     </html>
   );

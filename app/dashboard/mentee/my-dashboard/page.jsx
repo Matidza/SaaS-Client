@@ -36,7 +36,8 @@ export default function InterviewPrepLayout() {
     const interval = setInterval(randomizeColors, 300000); // 300,000 ms = 5 minute
     return () => clearInterval(interval);
   }, []);
-
+var user_type = localStorage.getItem('user_type')
+var userID = localStorage.getItem('userId')
   return (
     <Container className="py-5">
       <div className="text-center mb-5">
@@ -47,7 +48,8 @@ export default function InterviewPrepLayout() {
         <Button variant="primary" className="me-2">Find Professionals</Button>
         <Button variant="outline-secondary">How it Works</Button>
       </div>
-
+      <p>{user_type}</p>
+          <p>{userID}</p>
       <Row className="align-items-center mb-4">
         <Col><h3>Top Professionals</h3></Col>
         <Col className="text-end">
