@@ -42,7 +42,12 @@ export default function Page() {
                 localStorage.setItem('user_type', result.user_type) 
                 
                 setSuccessMessage(result.message)
-                 setTimeout(() => router.push('/AUTH_MICROSERVICE/signin'), 1000)
+                if (result.user_type === "mentee") {
+                    setTimeout(() => router.push('/dashboard/mentee/my-dashboard'),)
+                }
+                else if (result.user_type === "mentor") {
+                    setTimeout(() => router.push('/dashboard/mentor/my-dashboard'),)
+                } 
                 // ✅ Clear input fields after success
                 setEmail('')
                 setPassword('')

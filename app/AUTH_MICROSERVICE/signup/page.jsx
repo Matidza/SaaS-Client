@@ -43,7 +43,12 @@ export default function Page() {
 
 
                 setSuccessMessage(result.message)
-
+                if (result.user_type === "mentee") {
+                    setTimeout(() => router.push('/dashboard/mentee/my-dashboard'),)
+                }
+                else if (result.user_type === "mentor") {
+                    setTimeout(() => router.push('/dashboard/mentor/my-dashboard'),)
+                }
                 // ✅ Clear input fields after success
                 setEmail('')
                 setPassword('')
