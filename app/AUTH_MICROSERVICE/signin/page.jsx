@@ -38,10 +38,9 @@ export default function Page() {
 
             if (response.ok && result.success) {
                 
-                localStorage.setItem('accessToken', result.accessToken) 
                 localStorage.setItem('userId', result.userId)
                 localStorage.setItem('user_type', result.user_type)
-                //localStorage.setItem('email', result.email)
+                localStorage.setItem('email', result.email)
                 console.log(result)
                 
 
