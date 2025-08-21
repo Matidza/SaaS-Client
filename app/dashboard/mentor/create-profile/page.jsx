@@ -25,13 +25,13 @@ export default function CreateMentorProfilePage() {
     setMessage({ type: "", text: "" });
 
     try {
-      const token = localStorage.getItem("accessToken"); // or get from cookie
+      // ✅ Include credentials so cookie is sent automatically
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mentor/create-profile`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
+        credentials: "include", // important for sending HTTP-only cookies
         body: JSON.stringify(formData),
       });
 
@@ -51,7 +51,6 @@ export default function CreateMentorProfilePage() {
 
   return (
     <>
-      {/* Full-width header */}
       <section style={{ backgroundColor: "skyblue" }} className="py-5 mb-5">
         <Container className="text-center">
           <h1 className="mb-3">Create Your Mentor Profile</h1>
@@ -61,13 +60,10 @@ export default function CreateMentorProfilePage() {
         </Container>
       </section>
 
-      {/* Profile Form */}
       <Container>
         <Row className="justify-content-center">
           <Col md={8}>
-            {message.text && (
-              <Alert variant={message.type}>{message.text}</Alert>
-            )}
+            {message.text && <Alert variant={message.type}>{message.text}</Alert>}
 
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="name">
@@ -143,5 +139,6 @@ export default function CreateMentorProfilePage() {
     </>
   );
 }
+
 
 
