@@ -11,13 +11,13 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     // Try refresh immediately on mount (in case access token expired)
     refreshAccessToken().then((ok) => {
-      if (!ok) router.push("/signin");
+      if (!ok) router.push("/AUTH_MICROSERVICE/signin");
     });
 
     // Then set interval to refresh every 25 minutes
     const interval = setInterval(async () => {
       const ok = await refreshAccessToken();
-      if (!ok) router.push("/signin");
+      if (!ok) router.push("/AUTH_MICROSERVICE/signin");
     }, 25 * 60 * 1000);
 
     return () => clearInterval(interval);

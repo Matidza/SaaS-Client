@@ -37,7 +37,7 @@ export default function Page() {
             const result = await response.json()
 
             if (response.ok && result.success) {
-                
+                localStorage.setItem('accessToken', result.accessToken) 
                 localStorage.setItem('userId', result.userId)
                 localStorage.setItem('user_type', result.user_type)
                 localStorage.setItem('email', result.email)

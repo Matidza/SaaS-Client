@@ -21,6 +21,7 @@ export default function SignOutButton() {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('userId');
       localStorage.removeItem('user_type');
+      localStorage.removeItem('email');
   
       // Redirect to Sign In
       setTimeout(() => {
