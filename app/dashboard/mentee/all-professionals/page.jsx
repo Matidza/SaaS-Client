@@ -1,97 +1,62 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Badge, ListGroup } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Card, Button, Badge, ListGroup, Spinner, Alert } from "react-bootstrap";
 
 export default function Page() {
-  const professionals = [
-    {
-      name: "Sarah Mitchell",
-      title: "Senior Software Engineer at Google",
-      rating: "5.0",
-      reviews: 127,
-      tags: ["JavaScript", "System Design", "Algorithms"],
-      price: "$75/hour",
-      status: "Online",
-    },
-    {
-      name: "Michael Johnson",
-      title: "Investment Banking VP at Goldman Sachs",
-      rating: "4.9",
-      reviews: 89,
-      tags: ["Finance", "Case Studies", "Behavioral"],
-      price: "$120/hour",
-      status: "Busy",
-    },
-    {
-      name: "Emily Chen",
-      title: "Marketing Director at Meta",
-      rating: "4.8",
-      reviews: 156,
-      tags: ["Marketing", "Product", "Strategy"],
-      price: "$85/hour",
-      status: "Online",
-    },
-    {
-      name: "David Rodriguez",
-      title: "Senior Consultant at Deloitte",
-      rating: "5.0",
-      reviews: 73,
-      tags: ["Consulting", "Case Studies", "Leadership"],
-      price: "$95/hour",
-      status: "Online",
-    },
-    {
-      name: "Aisha Patel",
-      title: "Corporate Lawyer at Skadden",
-      rating: "4.7",
-      reviews: 42,
-      tags: ["Legal", "Corporate Law", "Litigation"],
-      price: "$110/hour",
-      status: "Offline",
-    },
-    {
-      name: "James Liu",
-      title: "Data Scientist at Netflix",
-      rating: "4.9",
-      reviews: 98,
-      tags: ["Data Science", "ML", "Statistics"],
-      price: "$90/hour",
-      status: "Online",
-    },
-  ];
-
-  // Bootstrap color options
-  const colorOptions = [
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
-  ];
-
+  const [professionals, setProfessionals] = useState([]);
   const [tagColors, setTagColors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
-  // Assign random colors to tags
-  const randomizeColors = () => {
-    const newColors = {};
-    professionals.forEach((pro) => {
-      pro.tags.forEach((tag) => {
+  const colorOptions = ["primary", "secondary", "success", "danger", "warning", "info"];
+
+  // assign random colors to tags
+  const assignColors = (profiles) => {
+    const newColors = { ...tagColors };
+    profiles.forEach((pro) => {
+      (pro.tags || []).forEach((tag) => {
         if (!newColors[tag]) {
-          newColors[tag] =
-            colorOptions[Math.floor(Math.random() * colorOptions.length)];
+          newColors[tag] = colorOptions[Math.floor(Math.random() * colorOptions.length)];
         }
       });
     });
     setTagColors(newColors);
   };
 
+  const fetchProfessionals = async (pageNumber) => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch(`http://localhost:9000/mentee/all-profesionals?page=${pageNumber}`, {
+        method: "GET",
+        credentials: "include", // keep cookies if needed
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.message || "Failed to fetch professionals");
+
+      if (data.result.length === 0) {
+        setHasMore(false);
+      } else {
+        setProfessionals((prev) => [...prev, ...data.result]);
+        assignColors(data.result);
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+
+    setLoading(false);
+  };
+
+  // fetch on mount & when page changes
   useEffect(() => {
-    randomizeColors();
-    const interval = setInterval(randomizeColors, 300000); // refresh every 5 min
-    return () => clearInterval(interval);
-  }, []);
+    fetchProfessionals(page);
+  }, [page]);
 
   return (
     <Container fluid className="mt-4">
@@ -134,7 +99,9 @@ export default function Page() {
         {/* Main Content */}
         <Col md={9} className="p-4">
           <h2 className="fw-bold">Mock Interview Professionals</h2>
-          <p className="text-muted">1,247 professionals available for interview prep sessions</p>
+          <p className="text-muted">Browse through available professionals</p>
+
+          {error && <Alert variant="danger">{error}</Alert>}
 
           <Row xs={1} md={2} lg={3} className="g-4">
             {professionals.map((pro, idx) => (
@@ -143,38 +110,26 @@ export default function Page() {
                   <Card.Body className="d-flex flex-column justify-content-between">
                     <div>
                       <div className="d-flex justify-content-between align-items-center mb-2">
-                        <Card.Title className="mb-0">{pro.name}</Card.Title>
-                        <Badge 
-                          bg={
-                            pro.status === "Online" 
-                              ? "success" 
-                              : pro.status === "Busy" 
-                              ? "warning" 
-                              : "secondary"
-                          }
-                        >
-                          {pro.status}
-                        </Badge>
+                        <Card.Title className="mb-0">{pro.name} {pro.surname}</Card.Title>
+                        <Badge bg="success">Online</Badge>
                       </div>
-                      <Card.Subtitle className="text-muted small mb-2">{pro.title}</Card.Subtitle>
+                      <Card.Subtitle className="text-muted small mb-2">
+                        {pro.currentJobTitle} at {pro.companyName}
+                      </Card.Subtitle>
                       <div className="text-warning mb-2">
-                        ⭐ {pro.rating} ({pro.reviews})
+                        ⭐ {pro.rating || "N/A"} ({pro.reviews || 0})
                       </div>
 
                       {/* Dynamic Color Tags */}
                       <div className="mb-2">
-                        {pro.tags.map((tag, i) => (
-                          <Badge
-                            bg={tagColors[tag] || "secondary"}
-                            key={i}
-                            className="me-1"
-                          >
+                        {(pro.tags || []).map((tag, i) => (
+                          <Badge bg={tagColors[tag] || "secondary"} key={i} className="me-1">
                             {tag}
                           </Badge>
                         ))}
                       </div>
                     </div>
-			 {/* Multi-line truncation */}
+
                     <span
                       style={{
                         display: "-webkit-box",
@@ -183,14 +138,11 @@ export default function Page() {
                         overflow: "hidden",
                       }}
                     >
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptatum aperiam magnam consequatur, ea rerum veniam
-                      expedita ipsum recusandae ex? Aspernatur assumenda debitis
-                      aut est itaque corporis magnam voluptatibus aperiam pariatur.
+                      {pro.description}
                     </span>
 
                     <div className="d-flex justify-content-between align-items-center mt-3">
-                      <span className="fw-bold">{pro.price}</span>
+                      <span className="fw-bold">{pro.price || "$50/hour"}</span>
                       <Button variant="primary" size="sm">Book Session</Button>
                     </div>
                   </Card.Body>
@@ -200,7 +152,19 @@ export default function Page() {
           </Row>
 
           <div className="text-center mt-4">
-            <Button variant="link" className="fw-semibold">Load More Professionals ▼</Button>
+            {loading ? (
+              <Spinner animation="border" />
+            ) : hasMore ? (
+              <Button
+                variant="link"
+                className="fw-semibold"
+                onClick={() => setPage((prev) => prev + 1)}
+              >
+                Load More Professionals ▼
+              </Button>
+            ) : (
+              <p className="text-muted">No more professionals to load.</p>
+            )}
           </div>
         </Col>
       </Row>
