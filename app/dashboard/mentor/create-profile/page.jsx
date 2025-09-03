@@ -16,10 +16,11 @@ export default function CreateMentorProfilePage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
 
+  const router = useRouter(); // ✅ FIXED
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,24 +28,25 @@ export default function CreateMentorProfilePage() {
     setMessage({ type: "", text: "" });
 
     try {
-      // ✅ Include credentials so cookie is sent automatically`${process.env.NEXT_PUBLIC_API_URL}
-      const res = await fetch('http://localhost:9000/mentor/create-profile', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // important for sending HTTP-only cookies
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/mentor/create-profile`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include", // ✅ send cookies
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await res.json();
 
       if (res.ok) {
         setMessage({ type: "success", text: data.message });
-        // redirect to dashboard if success
-        setTineout(() => {
-          router.push("/dashboard/mentor/my-dashboard")
-        })
+
+        // ✅ redirect after 2s
+        setTimeout(() => {
+          router.push("/dashboard/mentor/my-dashboard");
+        }, 2000);
       } else {
         setMessage({ type: "danger", text: data.message });
       }
