@@ -4,13 +4,11 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Alert, Spinner } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 
-export default function CreateMentorProfilePage() {
+export default function CreateMenteeProfilePage() {
   const [formData, setFormData] = useState({
     name: "",
-    surname: "",
-    currentJobTitle: "",
-    companyName: "",
-    description: "",
+    surname: ""
+
   });
 
   const [loading, setLoading] = useState(false);
@@ -28,7 +26,7 @@ export default function CreateMentorProfilePage() {
 
     try {
       // ✅ Include credentials so cookie is sent automatically`${process.env.NEXT_PUBLIC_API_URL}
-      const res = await fetch('http://localhost:9000/mentor/create-profile', {
+      const res = await fetch('http://localhost:9000/mentee/create-profile', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,44 +93,7 @@ export default function CreateMentorProfilePage() {
                   required
                 />
               </Form.Group>
-
-              <Form.Group className="mb-3" controlId="currentJobTitle">
-                <Form.Label>Current Job Title</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="e.g. Senior Software Engineer"
-                  name="currentJobTitle"
-                  value={formData.currentJobTitle}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="companyName">
-                <Form.Label>Company Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter company name"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="description">
-                <Form.Label>Profile Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={5}
-                  placeholder="Tell mentees about yourself..."
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
+            
               <div className="d-grid">
                 <Button variant="primary" type="submit" disabled={loading}>
                   {loading ? <Spinner animation="border" size="sm" /> : "Create Profile"}
@@ -145,6 +106,3 @@ export default function CreateMentorProfilePage() {
     </>
   );
 }
-
-
-

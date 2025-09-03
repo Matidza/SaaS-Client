@@ -1,21 +1,9 @@
 'use client';
 
-import React from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  Badge,
-  Button,
-  Card,
-  ListGroup,
-} from 'react-bootstrap';
-import {
-  CalendarEvent,
-  StarFill,
-  CurrencyDollar,
-  ArrowUp,
-} from 'react-bootstrap-icons';
+
+import {Container,Row,Col,Badge,Button,Card,} from 'react-bootstrap';
+import {CalendarEvent,StarFill,CurrencyDollar,ArrowUp,} from 'react-bootstrap-icons';
+import Link from 'next/link';
 
 
 var user_type = localStorage.getItem('user_type')
@@ -213,9 +201,11 @@ export default function ProfessionalDashboard() {
                 <div className="text-muted small">Repeat Clients</div>
                 <div className="fw-bold">23%</div>
               </div>
-              <Button variant="primary" className="mt-3 w-100">
-                Edit Profile
-              </Button>
+              <Link href="/dashboard/mentor/profile" style={{ textDecoration: "none", color: "inherit"}}>
+                <Button variant="primary" className="mt-3 w-100">
+                  Edit Profile
+                </Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>

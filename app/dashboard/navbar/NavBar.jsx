@@ -74,7 +74,7 @@ export default function NavBar() {
               }}
             >
               <Link
-                href="/AUTH_MICROSERVICE/signin"
+                href="/auth/signin"
                 style={{
                   textDecoration: 'none',
                   color: 'inherit',
@@ -100,7 +100,7 @@ export default function NavBar() {
             >
 
 		<Link
-                href="/AUTH_MICROSERVICE/signup-as-professional"
+                href="/auth/signup-as-professional"
                 style={{
                   textDecoration: 'none',
                   color: 'white',

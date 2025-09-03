@@ -12,10 +12,10 @@ export default function DashboardLayout({ children }) {
   return (
     <html lang="en">
       <body>
-	<AuthProvider>
-        <NavBar />
-        {children}
-	 </AuthProvider>
+        <AuthProvider>
+          <NavBar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
