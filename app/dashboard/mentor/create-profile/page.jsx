@@ -19,7 +19,7 @@ export default function CreateMentorProfilePage() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const router = useRouter;
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,9 +42,9 @@ export default function CreateMentorProfilePage() {
       if (res.ok) {
         setMessage({ type: "success", text: data.message });
         // redirect to dashboard if success
-        //setTineout(() => {
-        //  router.push("/dashboard/mentor/my-dashboard")
-       // })
+        setTineout(() => {
+          router.push("/dashboard/mentor/my-dashboard")
+        })
       } else {
         setMessage({ type: "danger", text: data.message });
       }

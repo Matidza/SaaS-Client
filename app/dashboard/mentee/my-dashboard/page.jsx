@@ -146,6 +146,7 @@ export default function InterviewPrepLayout() {
                 <Card.Body>
                   <Link href="/dashboard/mentee/book-session-page" style={{textDecoration: "none",color: 'inherit',}}>
                     <Card.Title>{pro.name}</Card.Title>
+			
                     <Card.Subtitle className="mb-2 text-muted">
                       {pro.title}
                     </Card.Subtitle>
