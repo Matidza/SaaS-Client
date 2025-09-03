@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Badge, ListGroup } from 'react-bootstrap';
 
 export default function Page() {
@@ -60,6 +60,38 @@ export default function Page() {
       status: "Online",
     },
   ];
+
+  // Bootstrap color options
+  const colorOptions = [
+    "primary",
+    "secondary",
+    "success",
+    "danger",
+    "warning",
+    "info",
+  ];
+
+  const [tagColors, setTagColors] = useState({});
+
+  // Assign random colors to tags
+  const randomizeColors = () => {
+    const newColors = {};
+    professionals.forEach((pro) => {
+      pro.tags.forEach((tag) => {
+        if (!newColors[tag]) {
+          newColors[tag] =
+            colorOptions[Math.floor(Math.random() * colorOptions.length)];
+        }
+      });
+    });
+    setTagColors(newColors);
+  };
+
+  useEffect(() => {
+    randomizeColors();
+    const interval = setInterval(randomizeColors, 300000); // refresh every 5 min
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Container fluid className="mt-4">
@@ -128,14 +160,35 @@ export default function Page() {
                       <div className="text-warning mb-2">
                         ⭐ {pro.rating} ({pro.reviews})
                       </div>
+
+                      {/* Dynamic Color Tags */}
                       <div className="mb-2">
-                        {pro.tags.map((tag, tIdx) => (
-                          <Badge bg="light" text="dark" key={tIdx} className="me-1">
+                        {pro.tags.map((tag, i) => (
+                          <Badge
+                            bg={tagColors[tag] || "secondary"}
+                            key={i}
+                            className="me-1"
+                          >
                             {tag}
                           </Badge>
                         ))}
                       </div>
                     </div>
+			 {/* Multi-line truncation */}
+                    <span
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                      }}
+                    >
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Voluptatum aperiam magnam consequatur, ea rerum veniam
+                      expedita ipsum recusandae ex? Aspernatur assumenda debitis
+                      aut est itaque corporis magnam voluptatibus aperiam pariatur.
+                    </span>
+
                     <div className="d-flex justify-content-between align-items-center mt-3">
                       <span className="fw-bold">{pro.price}</span>
                       <Button variant="primary" size="sm">Book Session</Button>
