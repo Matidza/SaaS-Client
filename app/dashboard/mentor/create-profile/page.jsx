@@ -42,6 +42,7 @@ export default function CreateMentorProfilePage() {
 
       if (res.ok) {
         setMessage({ type: "success", text: data.message });
+        console.log(data)
 
         // ✅ redirect after 2s
         setTimeout(() => {

@@ -1,7 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Button, Badge, ListGroup, Spinner, Alert } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Badge,
+  ListGroup,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
+import Link from "next/link";
 
 export default function Page() {
   const [professionals, setProfessionals] = useState([]);
@@ -13,13 +24,14 @@ export default function Page() {
 
   const colorOptions = ["primary", "secondary", "success", "danger", "warning", "info"];
 
-  // assign random colors to tags
+  // Assign random colors to tags
   const assignColors = (profiles) => {
     const newColors = { ...tagColors };
     profiles.forEach((pro) => {
       (pro.tags || []).forEach((tag) => {
         if (!newColors[tag]) {
-          newColors[tag] = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+          newColors[tag] =
+            colorOptions[Math.floor(Math.random() * colorOptions.length)];
         }
       });
     });
@@ -31,10 +43,13 @@ export default function Page() {
     setError("");
 
     try {
-      const res = await fetch(`http://localhost:9000/mentee/all-profesionals?page=${pageNumber}`, {
-        method: "GET",
-        credentials: "include", // keep cookies if needed
-      });
+      const res = await fetch(
+        `http://localhost:9000/mentee/all-profesionals?page=${pageNumber}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
 
@@ -53,7 +68,7 @@ export default function Page() {
     setLoading(false);
   };
 
-  // fetch on mount & when page changes
+  // Fetch on mount & when page changes
   useEffect(() => {
     fetchProfessionals(page);
   }, [page]);
@@ -108,42 +123,63 @@ export default function Page() {
               <Col key={idx}>
                 <Card className="h-100 shadow-sm">
                   <Card.Body className="d-flex flex-column justify-content-between">
-                    <div>
-                      <div className="d-flex justify-content-between align-items-center mb-2">
-                        <Card.Title className="mb-0">{pro.name} {pro.surname}</Card.Title>
-                        <Badge bg="success">Online</Badge>
-                      </div>
-                      <Card.Subtitle className="text-muted small mb-2">
-                        {pro.currentJobTitle} at {pro.companyName}
-                      </Card.Subtitle>
-                      <div className="text-warning mb-2">
-                        ⭐ {pro.rating || "N/A"} ({pro.reviews || 0})
-                      </div>
-
-                      {/* Dynamic Color Tags */}
-                      <div className="mb-2">
-                        {(pro.tags || []).map((tag, i) => (
-                          <Badge bg={tagColors[tag] || "secondary"} key={i} className="me-1">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <span
-                      style={{
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                      }}
+                    <Link
+                      href={`/dashboard/mentee/mentor-booking-details?_id=${pro._id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
                     >
-                      {pro.description}
-                    </span>
+                      <div>
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+                          <Card.Title className="mb-0">
+                            {pro.name} {pro.surname}
+                          </Card.Title>
+                          <Badge bg="success">Online</Badge>
+                        </div>
+                        <Card.Subtitle className="text-muted small mb-2">
+                          {pro.currentJobTitle} at {pro.companyName}
+                        </Card.Subtitle>
+                        <div className="text-warning mb-2">
+                          ⭐ {pro.rating || "N/A"} ({pro.reviews || 0})
+                        </div>
+
+                        {/* Dynamic Color Tags */}
+                        <div className="mb-2">
+                          {(pro.tags || []).map((tag, i) => (
+                            <Badge
+                              bg={tagColors[tag] || "secondary"}
+                              key={i}
+                              className="me-1"
+                            >
+
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+
+                      <span
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {pro.description}
+                      </span>
+                    </Link>
 
                     <div className="d-flex justify-content-between align-items-center mt-3">
-                      <span className="fw-bold">{pro.price || "$50/hour"}</span>
-                      <Button variant="primary" size="sm">Book Session</Button>
+                      <span className="fw-bold">
+                        {pro.price ? `$${pro.price}/hour` : "$50/hour"}
+                      </span>
+                      <Link
+                        href="/dashboard/mentee/book-a-session"
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        <Button variant="primary" size="sm">
+                          Book Session
+                        </Button>
+                      </Link>
                     </div>
                   </Card.Body>
                 </Card>
